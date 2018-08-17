@@ -1,4 +1,4 @@
-package com.john.testing;
+package com.digischool.digischool;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,9 +18,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.john.testing.adapters.CustomAdapter;
-import com.john.testing.constants.Constants;
-import com.john.testing.models.Score;
+
+import com.digischool.digischool.constants.Constants;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -120,18 +119,18 @@ public class StudentMarksActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) C0333R.layout.activity_get_student_marks);
+        setContentView((int) R.layout.activity_get_student_marks);
         this.isParent = getIntent().getBooleanExtra("isParent", false);
         if (this.isParent) {
             this.schoolID = getIntent().getStringExtra("school_reg");
         }
-        this.admn = (EditText) findViewById(C0333R.id.admn);
-        this.textViewNames = (TextView) findViewById(C0333R.id.textViewNames);
-        this.tvExam = (TextView) findViewById(C0333R.id.textViewExam);
-        this.tvTotal = (TextView) findViewById(C0333R.id.tvTotal);
-        this.spinnerTerm = (Spinner) findViewById(C0333R.id.spinnerYearTerm);
-        this.spinnerExamName = (Spinner) findViewById(C0333R.id.spinnerExamName);
-        this.listViewSubjects = (ListView) findViewById(C0333R.id.listViewSubjects);
+        this.admn = (EditText) findViewById(R.id.admn);
+        this.textViewNames = (TextView) findViewById(R.id.textViewNames);
+        this.tvExam = (TextView) findViewById(R.id.textViewExam);
+        this.tvTotal = (TextView) findViewById(R.id.tvTotal);
+        this.spinnerTerm = (Spinner) findViewById(R.id.spinnerYearTerm);
+        this.spinnerExamName = (Spinner) findViewById(R.id.spinnerExamName);
+        this.listViewSubjects = (ListView) findViewById(R.id.listViewSubjects);
         this.data = new ArrayList();
         this.adapter = new CustomAdapter(this.data, this);
         this.listViewSubjects.setAdapter(this.adapter);
@@ -156,7 +155,7 @@ public class StudentMarksActivity extends AppCompatActivity {
         if (this.isParent) {
             params.add("school_reg", this.schoolID);
         } else {
-            String school_reg = getSharedPreferences("database", 0).getString("school_reg", "");
+            String school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
             params.add("school_reg", school_reg);
             Log.d(TAG, "search: " + this.admn.getText().toString() + "  " + this.spinnerTerm.getSelectedItem().toString() + "  " + school_reg + " " + this.exam_name);
         }
@@ -165,13 +164,13 @@ public class StudentMarksActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(C0333R.menu.logout_menu, menu);
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == C0333R.id.logout_menu) {
-            Editor prefs = getSharedPreferences("database", 0).edit();
+        if (item.getItemId() == R.id.logout_menu) {
+            Editor prefs = getSharedPreferences("database", MODE_PRIVATE).edit();
             prefs.putBoolean("logged_in", false);
             prefs.commit();
             Intent x = new Intent(this, LoginActivity.class);
