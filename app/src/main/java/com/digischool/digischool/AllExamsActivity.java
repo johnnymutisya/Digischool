@@ -61,12 +61,12 @@ public class AllExamsActivity extends AppCompatActivity {
 
             public void onFailure(int statusCode, Header[] headers, String content, Throwable throwable) {
                 AllExamsActivity.this.progress.dismiss();
-                Toast.makeText(AllExamsActivity.this.getApplicationContext(), "Failed To Fetch. Try Again00", 1).show();
+                Toast.makeText(AllExamsActivity.this.getApplicationContext(), "Failed To Fetch. Try Again00", Toast.LENGTH_LONG).show();
             }
 
             public void onSuccess(int statusCode, Header[] headers, String content) {
                 Log.d("EXAMS", content);
-                Toast.makeText(AllExamsActivity.this.getApplicationContext(), "Score posted successfully", 1).show();
+                Toast.makeText(AllExamsActivity.this.getApplicationContext(), "Score posted successfully", Toast.LENGTH_LONG).show();
                 AllExamsActivity.this.edtScore.setText("");
                 AllExamsActivity.this.progress.dismiss();
             }
@@ -93,7 +93,7 @@ public class AllExamsActivity extends AppCompatActivity {
         }
 
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-            Toast.makeText(AllExamsActivity.this.getApplicationContext(), "Could Not Search", 1).show();
+            Toast.makeText(AllExamsActivity.this.getApplicationContext(), "Could Not Search", Toast.LENGTH_LONG).show();
         }
 
         public void onSuccess(int statusCode, Header[] headers, String content) {
@@ -135,11 +135,11 @@ public class AllExamsActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.logout_menu) {
-            Editor prefs = getSharedPreferences("database", 0).edit();
+            Editor prefs = getSharedPreferences("database", MODE_PRIVATE).edit();
             prefs.putBoolean("logged_in", false);
             prefs.commit();
             Intent x = new Intent(this, LoginActivity.class);
-            x.addFlags(335577088);
+            //x.addFlags(335577088);
             startActivity(x);
             finish();
         }

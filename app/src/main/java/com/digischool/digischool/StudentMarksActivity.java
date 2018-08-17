@@ -19,7 +19,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digischool.digischool.adapters.CustomAdapter;
 import com.digischool.digischool.constants.Constants;
+import com.digischool.digischool.models.Score;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -87,7 +89,7 @@ public class StudentMarksActivity extends AppCompatActivity {
 
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             StudentMarksActivity.this.progress.dismiss();
-            Toast.makeText(StudentMarksActivity.this.getApplicationContext(), "Failed To Fetch", 1).show();
+            Toast.makeText(StudentMarksActivity.this.getApplicationContext(), "Failed To Fetch", Toast.LENGTH_LONG).show();
         }
 
         public void onSuccess(int statusCode, Header[] headers, String content) {
@@ -174,7 +176,7 @@ public class StudentMarksActivity extends AppCompatActivity {
             prefs.putBoolean("logged_in", false);
             prefs.commit();
             Intent x = new Intent(this, LoginActivity.class);
-            x.addFlags(335577088);
+            //x.addFlags(335577088);
             startActivity(x);
             finish();
         }

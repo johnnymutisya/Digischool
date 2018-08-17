@@ -75,7 +75,7 @@ public class SchoolsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_schools);
-        getSupportActionBar().setTitle(getSharedPreferences("database", 0).getString("name_school", ""));
+        getSupportActionBar().setTitle(getSharedPreferences("database", MODE_PRIVATE).getString("name_school", ""));
         this.ex = (FancyButton) findViewById(R.id.ex);
         this.enr = (FancyButton) findViewById(R.id.enr);
         this.gsm = (FancyButton) findViewById(R.id.gsm);
@@ -97,11 +97,11 @@ public class SchoolsActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.logout_menu) {
-            Editor prefs = getSharedPreferences("database", 0).edit();
+            Editor prefs = getSharedPreferences("database", MODE_PRIVATE).edit();
             prefs.putBoolean("logged_in", false);
             prefs.commit();
             Intent x = new Intent(this, LoginActivity.class);
-            x.addFlags(335577088);
+            //x.addFlags(335577088);
             startActivity(x);
             finish();
         }

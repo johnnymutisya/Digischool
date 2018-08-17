@@ -44,7 +44,8 @@
         <activity android:name=".ReportsActivity" />
         <activity android:name=".SchoolLevelReportsActivity" />
         <activity android:name=".StudentMarksActivity" />
-        <activity android:name=".SubjectNameActivity"></activity>
+        <activity android:name=".SubjectNameActivity" />
+        <activity android:name=".SchoolTotalActivity"></activity>
     </application>
 
 </manifest>
