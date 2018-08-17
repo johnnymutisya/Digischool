@@ -40,7 +40,9 @@
         <activity android:name=".MOEreports" />
         <activity android:name=".SubcountyReportsActivity" />
         <activity android:name=".ParentsreportsActivity" />
-        <activity android:name=".PrincipalsReportActivity"></activity>
+        <activity android:name=".PrincipalsReportActivity" />
+        <activity android:name=".ReportsActivity" />
+        <activity android:name=".SchoolLevelReportsActivity"></activity>
     </application>
 
 </manifest>
