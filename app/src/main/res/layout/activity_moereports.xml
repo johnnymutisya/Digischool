@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/BTNsctscofficer"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="1.0">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="fill_parent"
+        android:layout_height="10.0dip"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.06"
+        android:text="MINISTRY OF EDUCATION REPORTS"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Button
+        android:id="@+id/BTNsc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Subcounty TSC Officer" />
+
+    <Button
+        android:id="@+id/BTNcde"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="COUNTY DIRECTOR OF EDUCATION" />
+
+    <Button
+        android:id="@+id/BTNcs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="CABINET SECRETARY OFFICE" />
+</LinearLayout>
