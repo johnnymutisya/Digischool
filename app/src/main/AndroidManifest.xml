@@ -35,7 +35,8 @@
         <activity android:name=".ClassteachersreportsActivity" />
         <activity android:name=".CountyreportsActivity" />
         <activity android:name=".DeanReports" />
-        <activity android:name=".EnrollmentActivity"></activity>
+        <activity android:name=".EnrollmentActivity" />
+        <activity android:name=".GovReportsActivity"></activity>
     </application>
 
 </manifest>
