@@ -1,4 +1,4 @@
-package com.john.testing;
+package com.digischool.digischool;
 
 import android.content.Intent;
 import android.content.SharedPreferences.Editor;
@@ -74,14 +74,14 @@ public class SchoolsActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) C0333R.layout.activity_schools);
+        setContentView((int) R.layout.activity_schools);
         getSupportActionBar().setTitle(getSharedPreferences("database", 0).getString("name_school", ""));
-        this.ex = (FancyButton) findViewById(C0333R.id.ex);
-        this.enr = (FancyButton) findViewById(C0333R.id.enr);
-        this.gsm = (FancyButton) findViewById(C0333R.id.gsm);
-        this.streamBtn = (FancyButton) findViewById(C0333R.id.streamBtN);
-        this.BTNaddsubject = (FancyButton) findViewById(C0333R.id.BTNaddsubject);
-        this.BTNreports = (FancyButton) findViewById(C0333R.id.BTNreports);
+        this.ex = (FancyButton) findViewById(R.id.ex);
+        this.enr = (FancyButton) findViewById(R.id.enr);
+        this.gsm = (FancyButton) findViewById(R.id.gsm);
+        this.streamBtn = (FancyButton) findViewById(R.id.streamBtN);
+        this.BTNaddsubject = (FancyButton) findViewById(R.id.BTNaddsubject);
+        this.BTNreports = (FancyButton) findViewById(R.id.BTNreports);
         this.streamBtn.setOnClickListener(new C03401());
         this.BTNaddsubject.setOnClickListener(new C03412());
         this.ex.setOnClickListener(new C03423());
@@ -91,12 +91,12 @@ public class SchoolsActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(C0333R.menu.logout_menu, menu);
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == C0333R.id.logout_menu) {
+        if (item.getItemId() == R.id.logout_menu) {
             Editor prefs = getSharedPreferences("database", 0).edit();
             prefs.putBoolean("logged_in", false);
             prefs.commit();

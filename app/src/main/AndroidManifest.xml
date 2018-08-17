@@ -42,7 +42,8 @@
         <activity android:name=".ParentsreportsActivity" />
         <activity android:name=".PrincipalsReportActivity" />
         <activity android:name=".ReportsActivity" />
-        <activity android:name=".SchoolLevelReportsActivity"></activity>
+        <activity android:name=".SchoolLevelReportsActivity" />
+        <activity android:name=".StudentMarksActivity"></activity>
     </application>
 
 </manifest>
