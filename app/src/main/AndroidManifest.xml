@@ -32,7 +32,9 @@
         <activity android:name=".BatchMarksActivity" />
         <activity android:name=".CabinetsecretaryreportsActivity" />
         <activity android:name=".ClassteacherloginActivity" />
-        <activity android:name=".ClassteachersreportsActivity"></activity>
+        <activity android:name=".ClassteachersreportsActivity" />
+        <activity android:name=".CountyreportsActivity" />
+        <activity android:name=".DeanReports"></activity>
     </application>
 
 </manifest>
