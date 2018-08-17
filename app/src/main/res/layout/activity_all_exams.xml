@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="16.0dip">
+
+    <TextView
+        android:id="@id/textViewNames"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Student Name" />
+
+    <EditText
+        android:id="@+id/edtAdmn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Admn"
+        android:inputType="number" />
+
+    <Spinner
+        android:id="@+id/spinnerExams"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/exams_array" />
+
+    <Spinner
+        android:id="@+id/spinnerSubjects"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/subjects_array" />
+
+    <Spinner
+        android:id="@+id/spinnerTerm"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/terms_array" />
+
+    <EditText
+        android:id="@+id/edtScore"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Score"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/buttonSuball"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+</LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.digischool.digischool">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AllExamsActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".ParentsLoginActivity" />
+        <activity android:name=".GovLoginActivity" />
+        <activity android:name=".SchoolsActivity" />
+        <activity android:name=".reports.TopTenActivity" />
+        <activity android:name=".reports.BottomTenActivity" />
+        <activity android:name=".reports.AllPerClassActivity" />
+        <activity android:name=".reports.MeanScoresActivity" />
+        <activity android:name=".reports.TotalPerStreamActivity" />
+        <activity android:name=".reports.TotalsPerClassActivity" />
+        <activity android:name=".AttendanceActivity" />
+        <activity android:name=".StreamsActivity" />
+        <activity android:name=".BatchMarksActivity" />
+        <activity android:name=".CabinetsecretaryreportsActivity" />
+        <activity android:name=".ClassteacherloginActivity" />
+        <activity android:name=".ClassteachersreportsActivity"></activity>
+    </application>
+
+</manifest>

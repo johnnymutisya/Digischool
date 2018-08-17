@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Digischool</string>
+    <array name="classes_array">
+        <item>1Y</item>
+        <item>1B</item>
+        <item>1G</item>
+        <item>2Y</item>
+        <item>2B</item>
+        <item>2G</item>
+        <item>3Y</item>
+        <item>3B</item>
+        <item>3G</item>
+        <item>4Y</item>
+        <item>4B</item>
+        <item>4G</item>
+    </array>
+    <array name="exams_array">
+        <item>CAT 1</item>
+        <item>CAT 2</item>
+        <item>Main Exam</item>
+    </array>
+    <array name="subjects_array">
+        <item>Computer</item>
+        <item>Kiswahili</item>
+        <item>Biology</item>
+        <item>English</item>
+        <item>Chemistry</item>
+        <item>Agriculture</item>
+        <item>Physics</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Maths</item>
+        <item>Business Studies</item>
+        <item>Home Science</item>
+        <item>French</item>
+        <item>CRE</item>
+    </array>
+    <array name="terms_array">
+        <item>TERM 1</item>
+        <item>TERM 2</item>
+        <item>TERM 3</item>
+    </array>
+</resources>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="80.0dip">
+
+    <TextView
+        android:id="@+id/textViewNames"
+        android:layout_width="300.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26.0dip"
+        android:gravity="center_horizontal"
+        android:text="Schools Login"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="#ff1f24cc"
+        android:textSize="24.0sp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="300.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18.0dip">
+
+        <EditText
+            android:id="@+id/regno"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Registration Number" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        android:layout_width="300.0dip"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/psd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password" />
+    </android.support.design.widget.TextInputLayout>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/log"
+        android:layout_width="300.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.0dip"
+        android:paddingBottom="10.0dip"
+        android:paddingLeft="20.0dip"
+        android:paddingRight="20.0dip"
+        android:paddingTop="10.0dip"
+        android:onClick="login"
+        fancy:fb_borderColor="#ffffffff"
+        fancy:fb_borderWidth="1.0dip"
+        fancy:fb_defaultColor="#08a706"
+        fancy:fb_focusColor="#2ac928"
+        fancy:fb_iconPosition="left"
+        fancy:fb_radius="6.0dip"
+        fancy:fb_text="Login"
+        fancy:fb_textColor="#ffffffff" />
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:layout_width="300.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.0dip"
+        android:onClick="parentSignIn"
+        android:paddingBottom="10.0dip"
+        android:paddingLeft="20.0dip"
+        android:paddingRight="20.0dip"
+        android:paddingTop="10.0dip"
+        fancy:fb_borderColor="#ffffffff"
+        fancy:fb_borderWidth="1.0dip"
+        fancy:fb_defaultColor="@color/colorButtonDark"
+        fancy:fb_focusColor="@color/colorButtonLight"
+        fancy:fb_iconPosition="left"
+        fancy:fb_radius="6.0dip"
+        fancy:fb_text="Are you a parent? Login Here"
+        fancy:fb_textColor="#ffffffff" />
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:layout_width="300.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.0dip"
+        android:onClick="ministrySignIn"
+        android:paddingBottom="10.0dip"
+        android:paddingLeft="20.0dip"
+        android:paddingRight="20.0dip"
+        android:paddingTop="10.0dip"
+        fancy:fb_borderColor="#ffffffff"
+        fancy:fb_borderWidth="1.0dip"
+        fancy:fb_defaultColor="@color/colorButtonDark"
+        fancy:fb_focusColor="@color/colorButtonLight"
+        fancy:fb_iconPosition="left"
+        fancy:fb_radius="6.0dip"
+        fancy:fb_text="Ministry? Login Here"
+        fancy:fb_textColor="#ffffffff" />
+</LinearLayout>
