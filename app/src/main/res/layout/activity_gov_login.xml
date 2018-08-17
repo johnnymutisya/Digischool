@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".GovLoginActivity">
-
-</android.support.constraint.ConstraintLayout>
+<LinearLayout android:orientation="vertical" android:background="#ffbec4ba" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="30.0sp" android:textColor="@color/colorTextView" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="Ministry Login" />
+    <android.support.design.widget.TextInputLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <EditText android:id="@id/inputUsername" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="Username" android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dip">
+        <EditText android:id="@id/inputPassword" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="Password" android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+    <Button android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dip" android:text="Sign In" android:onClick="ministyLogin" />
+</LinearLayout>
