@@ -21,6 +21,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.digischool.digischool.adapters.MarksAdapter;
+import com.digischool.digischool.constants.Constants;
+import com.digischool.digischool.models.Marks;
 import com.google.gson.Gson;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -75,7 +79,7 @@ public class BatchMarksActivity extends AppCompatActivity {
         }
 
         public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
-            Toast.makeText(BatchMarksActivity.this, "Works", 0).show();
+            Toast.makeText(BatchMarksActivity.this, "Works", MODE_PRIVATE).show();
             View mView = LayoutInflater.from(BatchMarksActivity.this.f26c).inflate(R.layout.input_marks_dialog, null);
             Builder alertDialogBuilderUserInput = new Builder(BatchMarksActivity.this.f26c);
             alertDialogBuilderUserInput.setTitle("SCORE FOR  " + ((Marks) BatchMarksActivity.this.data.get(position)).getNames().toUpperCase());
@@ -124,7 +128,7 @@ public class BatchMarksActivity extends AppCompatActivity {
 
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             BatchMarksActivity.this.progress.dismiss();
-            Toast.makeText(BatchMarksActivity.this.getApplicationContext(), "Failed To Fetch", 1).show();
+            Toast.makeText(BatchMarksActivity.this.getApplicationContext(), "Failed To Fetch", Toast.LENGTH_LONG).show();
         }
 
         public void onSuccess(int statusCode, Header[] headers, String content) {
@@ -132,7 +136,7 @@ public class BatchMarksActivity extends AppCompatActivity {
             try {
                 JSONArray array = new JSONArray(content);
                 if (array.length() <= 0) {
-                    Toast.makeText(BatchMarksActivity.this, "No records found for the selected class", 0).show();
+                    Toast.makeText(BatchMarksActivity.this, "No records found for the selected class", MODE_PRIVATE).show();
                 }
                 BatchMarksActivity.this.data.clear();
                 for (int i = 0; i < array.length(); i++) {
@@ -160,10 +164,10 @@ public class BatchMarksActivity extends AppCompatActivity {
         public void onSuccess(int statusCode, Header[] headers, String content) {
             BatchMarksActivity.this.progress.dismiss();
             if (content.contains("Inserted")) {
-                Snackbar.make(BatchMarksActivity.this.list, (CharSequence) "The Scores Have been Inserted Succesfully", 0).show();
+                Snackbar.make(BatchMarksActivity.this.list, (CharSequence) "The Scores Have been Inserted Succesfully", MODE_PRIVATE).show();
             }
             if (content.contains("Updated")) {
-                Snackbar.make(BatchMarksActivity.this.list, (CharSequence) "The Scores Have Been Updated Succesfully", 0).show();
+                Snackbar.make(BatchMarksActivity.this.list, (CharSequence) "The Scores Have Been Updated Succesfully", MODE_PRIVATE).show();
             }
         }
     }
@@ -177,7 +181,7 @@ public class BatchMarksActivity extends AppCompatActivity {
         this.spinnerTerm = (Spinner) findViewById(R.id.spinnerTerm);
         this.spinnerClass = (Spinner) findViewById(R.id.spinnerClass);
         this.spinner_data = new ArrayList();
-        this.adapter_spinner = new ArrayAdapter(this, 17367048, this.spinner_data);
+        this.adapter_spinner = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, this.spinner_data);
         this.adapter_spinner.setDropDownViewResource(17367049);
         this.spinnerClass.setAdapter(this.adapter_spinner);
         this.spinnerClass.setOnItemSelectedListener(new C03241());
@@ -193,7 +197,7 @@ public class BatchMarksActivity extends AppCompatActivity {
     private void populate_classes() {
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        params.add("school_reg", getSharedPreferences("database", 0).getString("school_reg", ""));
+        params.add("school_reg", getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", ""));
         this.progress.show();
         c.post(Constants.BASE_URL + "get_streams.php", params, new C05643());
     }
@@ -201,7 +205,7 @@ public class BatchMarksActivity extends AppCompatActivity {
     private void fetchStudents(String selected_class) {
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
-        params.add("school_reg", getSharedPreferences("database", 0).getString("school_reg", ""));
+        params.add("school_reg", getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", ""));
         params.put("class", selected_class);
         this.progress.show();
         c.post(Constants.BASE_URL + "get_students.php", params, new C05654());
@@ -228,7 +232,7 @@ public class BatchMarksActivity extends AppCompatActivity {
         String class_selected = this.spinnerClass.getSelectedItem().toString();
         String marks = new Gson().toJson(this.data);
         Log.d("JSON_DATA", "send_marks: " + marks);
-        params.add("school_reg", getSharedPreferences("database", 0).getString("school_reg", ""));
+        params.add("school_reg", getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", ""));
         params.put("class", class_selected);
         params.put("exam", exam);
         params.put("term", term);

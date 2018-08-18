@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isLoggedIn() {
-        return getSharedPreferences("database", 0).getBoolean("logged_in", false);
+        return getSharedPreferences("database", MODE_PRIVATE).getBoolean("logged_in", false);
     }
 
 
@@ -65,11 +65,11 @@ public class LoginActivity extends AppCompatActivity {
         c.post(Constants.BASE_URL + "login.php", params, new TextHttpResponseHandler() {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 LoginActivity.this.progress.dismiss();
-                Toast.makeText(LoginActivity.this.getApplicationContext(), "Failed To Fetch", 1).show();
+                Toast.makeText(LoginActivity.this.getApplicationContext(), "Failed To Fetch", Toast.LENGTH_LONG).show();
             }
 
             public void onSuccess(int statusCode, Header[] headers, String content) {
-                Toast.makeText(LoginActivity.this.getApplicationContext(), "" + content, 0).show();
+                Toast.makeText(LoginActivity.this.getApplicationContext(), "" + content, MODE_PRIVATE).show();
                 Log.d("SERVER", "onSuccess: " + content);
                 if (content.contains("success")) {
                     String school_name = "";
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    SharedPreferences.Editor prefs = LoginActivity.this.getSharedPreferences("database", 0).edit();
+                    SharedPreferences.Editor prefs = LoginActivity.this.getSharedPreferences("database", MODE_PRIVATE).edit();
                     prefs.putString("school_reg", school_reg);
                     prefs.putString("name_school", school_name);
                     prefs.putBoolean("logged_in", true);
@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     LoginActivity.this.startActivity(new Intent(LoginActivity.this, SchoolsActivity.class));
                     LoginActivity.this.finish();
                 } else {
-                    Toast.makeText(LoginActivity.this.getApplicationContext(), "Wrong username or password try again", 1).show();
+                    Toast.makeText(LoginActivity.this.getApplicationContext(), "Wrong username or password try again", Toast.LENGTH_LONG).show();
                 }
                 LoginActivity.this.progress.dismiss();
             }

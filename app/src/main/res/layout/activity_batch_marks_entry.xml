@@ -1,17 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="4.0">
-        <TextView android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="Select Exam Name" android:layout_weight="1.0" />
-        <TextView android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="Select Subject Name" android:layout_weight="1.0" />
-        <TextView android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="Select Term" android:layout_weight="1.0" />
-        <TextView android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="Select Class" android:layout_weight="1.0" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4.0">
+
+        <TextView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="Select Exam Name" />
+
+        <TextView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="Select Subject Name" />
+
+        <TextView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="Select Term" />
+
+        <TextView
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="Select Class" />
     </LinearLayout>
-    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="4.0">
-        <Spinner android:entries="@array/exams_array" android:id="@id/spinnerExams" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
-        <Spinner android:entries="@array/subjects_array" android:id="@id/spinnerSubjects" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
-        <Spinner android:entries="@array/terms_array" android:id="@id/spinnerTerm" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
-        <Spinner android:id="@+id/spinnerClass" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4.0">
+
+        <Spinner
+            android:id="@id/spinnerExams"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:entries="@array/exams_array" />
+
+        <Spinner
+            android:id="@id/spinnerSubjects"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:entries="@array/subjects_array" />
+
+        <Spinner
+            android:id="@id/spinnerTerm"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:entries="@array/terms_array" />
+
+        <Spinner
+            android:id="@+id/spinnerClass"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0" />
     </LinearLayout>
-    <ListView android:id="@+id/listStudents" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+
+    <ListView
+        android:id="@+id/listStudents"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </LinearLayout>

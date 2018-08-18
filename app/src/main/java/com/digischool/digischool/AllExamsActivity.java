@@ -119,7 +119,7 @@ public class AllExamsActivity extends AppCompatActivity {
     }
 
     protected void search(String input) {
-        String school_reg = getSharedPreferences("database", 0).getString("school_reg", "");
+        String school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         RequestParams params = new RequestParams();
         params.put("adm", input);
         params.put("school_reg", school_reg);

@@ -66,7 +66,7 @@ public class StreamsActivity extends AppCompatActivity {
         this.edtStream = (EditText) findViewById(R.id.inputStream);
         this.listStreams = (ListView) findViewById(R.id.listStreams);
         this.streamsArray = new ArrayList();
-        this.adapter = new ArrayAdapter(this, 17367043, this.streamsArray);
+        this.adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.streamsArray);
         this.listStreams.setAdapter(this.adapter);
         final String school_reg = getSharedPreferences("database", 0).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
@@ -101,7 +101,7 @@ public class StreamsActivity extends AppCompatActivity {
             prefs.putBoolean("logged_in", false);
             prefs.commit();
             Intent x = new Intent(this, LoginActivity.class);
-            x.addFlags(335577088);
+            //x.addFlags(335577088);
             startActivity(x);
             finish();
         }

@@ -89,7 +89,7 @@ public class AttendanceActivity extends AppCompatActivity {
         this.spinnerSubjects = (Spinner) findViewById(R.id.spinnerSubjects);
         this.spinnerSubjects.setOnItemSelectedListener(new C03231());
         this.inputClass = (EditText) findViewById(R.id.inputClass);
-        this.school_reg = getSharedPreferences("database", 0).getString("school_reg", "");
+        this.school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Loading....");
     }
@@ -143,7 +143,7 @@ public class AttendanceActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.logout_menu) {
-            Editor prefs = getSharedPreferences("database", 0).edit();
+            Editor prefs = getSharedPreferences("database", MODE_PRIVATE).edit();
             prefs.putBoolean("logged_in", false);
             prefs.commit();
             Intent x = new Intent(this, LoginActivity.class);
