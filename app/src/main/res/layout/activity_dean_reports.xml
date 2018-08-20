@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16.0dip"
         android:paddingBottom="10.0dip"
-        android:onClick="best10students"
+        android:onClick="top_ten"
         android:paddingLeft="20.0dip"
         android:paddingRight="20.0dip"
         android:paddingTop="10.0dip"
@@ -48,7 +48,7 @@
         android:id="@+id/BTNstreamlast10"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-
+        android:onClick="bottom_ten"
         android:layout_marginTop="16.0dip"
         android:paddingBottom="10.0dip"
         android:paddingLeft="20.0dip"

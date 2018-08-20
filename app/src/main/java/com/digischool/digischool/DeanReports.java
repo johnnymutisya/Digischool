@@ -20,7 +20,7 @@ public class DeanReports extends AppCompatActivity {
         startActivity(new Intent(this, TopTenActivity.class));
     }
 
-    public void bottom_tem(View view) {
+    public void bottom_ten(View view) {
         startActivity(new Intent(this, BottomTenActivity.class));
     }
 
