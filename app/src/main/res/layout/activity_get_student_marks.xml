@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@id/admn"
+            android:id="@+id/admn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -23,7 +23,7 @@
         </EditText>
 
         <TextView
-            android:id="@id/textViewNames"
+            android:id="@+id/textViewNames"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -41,7 +41,7 @@
             android:entries="@array/terms_array" />
 
         <Spinner
-            android:id="@id/spinnerExamName"
+            android:id="@+id/spinnerExamName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10.0dip"

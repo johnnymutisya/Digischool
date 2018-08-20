@@ -1,4 +1,4 @@
-package com.john.testing;
+package com.digischool.digischool;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,7 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.john.testing.constants.Constants;
+
+import com.digischool.digischool.constants.Constants;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -41,7 +42,7 @@ public class EnrollmentActivity extends AppCompatActivity {
 
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 EnrollmentActivity.this.progress.dismiss();
-                Toast.makeText(EnrollmentActivity.this.getApplicationContext(), "Failed To Fetch", 1).show();
+                Toast.makeText(EnrollmentActivity.this.getApplicationContext(), "Failed To Fetch", Toast.LENGTH_LONG).show();
             }
 
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
@@ -50,7 +51,7 @@ public class EnrollmentActivity extends AppCompatActivity {
                 try {
                     int status = new JSONObject(responseString).getInt(NotificationCompat.CATEGORY_STATUS);
                     if (status == 1) {
-                        Toast.makeText(EnrollmentActivity.this.getApplicationContext(), "Registered succesfully", 1).show();
+                        Toast.makeText(EnrollmentActivity.this.getApplicationContext(), "Registered succesfully", Toast.LENGTH_LONG).show();
                         EnrollmentActivity.this.names.setText("");
                         EnrollmentActivity.this.admn.setText("");
                         EnrollmentActivity.this.kcpe.setText("");
@@ -58,9 +59,9 @@ public class EnrollmentActivity extends AppCompatActivity {
                         EnrollmentActivity.this.phone.setText("");
                         EnrollmentActivity.this.progress.dismiss();
                     } else if (status == 0) {
-                        Toast.makeText(EnrollmentActivity.this.getApplicationContext(), "Failed to register. Try Again", 1).show();
+                        Toast.makeText(EnrollmentActivity.this.getApplicationContext(), "Failed to register. Try Again", Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(EnrollmentActivity.this.getApplicationContext(), "Student with admission " + EnrollmentActivity.this.admn.getText().toString() + "  already exists", 1).show();
+                        Toast.makeText(EnrollmentActivity.this.getApplicationContext(), "Student with admission " + EnrollmentActivity.this.admn.getText().toString() + "  already exists", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -84,36 +85,36 @@ public class EnrollmentActivity extends AppCompatActivity {
                 phoneNum = phoneNum.replaceFirst("[07]", "+254");
             }
             params.add("phone", phoneNum);
-            params.add("school_reg", EnrollmentActivity.this.getSharedPreferences("database", 0).getString("school_reg", ""));
+            params.add("school_reg", EnrollmentActivity.this.getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", ""));
             c.post(Constants.BASE_URL + "students.php", params, new C05681());
         }
     }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) C0333R.layout.activity_enrollment);
-        this.names = (EditText) findViewById(C0333R.id.names);
-        this.admn = (EditText) findViewById(C0333R.id.admn);
-        this.kcpe = (EditText) findViewById(C0333R.id.kcpe);
-        this.cls = (EditText) findViewById(C0333R.id.cls);
-        this.phone = (EditText) findViewById(C0333R.id.phone);
-        this.textViewSchool = (TextView) findViewById(C0333R.id.textViewSchool);
+        setContentView((int) R.layout.activity_enrollment);
+        this.names = (EditText) findViewById(R.id.names);
+        this.admn = (EditText) findViewById(R.id.admn);
+        this.kcpe = (EditText) findViewById(R.id.kcpe);
+        this.cls = (EditText) findViewById(R.id.cls);
+        this.phone = (EditText) findViewById(R.id.phone);
+        this.textViewSchool = (TextView) findViewById(R.id.textViewSchool);
         this.progress = new ProgressDialog(this);
         this.progress.setMessage("Sending ...");
         CharSequence school_name = getSharedPreferences("database", 0).getString("name_school", "");
         this.textViewSchool.setText(school_name);
         getSupportActionBar().setTitle(school_name);
-        this.se = (Button) findViewById(C0333R.id.se);
+        this.se = (Button) findViewById(R.id.se);
         this.se.setOnClickListener(new C03281());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(C0333R.menu.logout_menu, menu);
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == C0333R.id.logout_menu) {
+        if (item.getItemId() == R.id.logout_menu) {
             Editor prefs = getSharedPreferences("database", 0).edit();
             prefs.putBoolean("logged_in", false);
             prefs.commit();
