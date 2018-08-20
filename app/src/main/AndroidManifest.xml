@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.digischool.digischool">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,11 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".AllExamsActivity" />
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +40,6 @@
         <activity android:name=".ClassteachersreportsActivity" />
         <activity android:name=".CountyreportsActivity" />
         <activity android:name=".DeanReports" />
-        <activity android:name=".EnrollmentActivity" />
         <activity android:name=".GovReportsActivity" />
         <activity android:name=".MOEreports" />
         <activity android:name=".SubcountyReportsActivity" />
@@ -51,7 +49,8 @@
         <activity android:name=".SchoolLevelReportsActivity" />
         <activity android:name=".StudentMarksActivity" />
         <activity android:name=".SubjectNameActivity" />
-        <activity android:name=".SchoolTotalActivity"></activity>
+        <activity android:name=".SchoolTotalActivity" />
+        <activity android:name=".EnrollmentActivity"></activity>
     </application>
 
 </manifest>

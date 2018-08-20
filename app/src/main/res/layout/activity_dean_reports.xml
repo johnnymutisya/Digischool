@@ -8,44 +8,6 @@
     android:padding="20.0dip">
 
     <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/BTNclassbest10"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16.0dip"
-        android:onClick="top_ten"
-        android:paddingBottom="10.0dip"
-        android:paddingLeft="20.0dip"
-        android:paddingRight="20.0dip"
-        android:paddingTop="10.0dip"
-        fancy:fb_borderColor="#ffffffff"
-        fancy:fb_borderWidth="1.0dip"
-        fancy:fb_defaultColor="@color/colorButtonDark"
-        fancy:fb_focusColor="@color/colorButtonLight"
-        fancy:fb_iconPosition="left"
-        fancy:fb_radius="6.0dip"
-        fancy:fb_text="BEST 10 STUDENTS PER CLASS"
-        fancy:fb_textColor="#ffffffff" />
-
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/BTNclasslast10"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16.0dip"
-        android:onClick="bottom_tem"
-        android:paddingBottom="10.0dip"
-        android:paddingLeft="20.0dip"
-        android:paddingRight="20.0dip"
-        android:paddingTop="10.0dip"
-        fancy:fb_borderColor="#ffffffff"
-        fancy:fb_borderWidth="1.0dip"
-        fancy:fb_defaultColor="@color/colorButtonDark"
-        fancy:fb_focusColor="@color/colorButtonLight"
-        fancy:fb_iconPosition="left"
-        fancy:fb_radius="6.0dip"
-        fancy:fb_text="LAST 10 STUDENTS PER CLASS"
-        fancy:fb_textColor="#ffffffff" />
-
-    <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/BTNclassAll"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
