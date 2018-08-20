@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".EnrollmentActivity">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="16.0dip">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textViewSchool"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16.0dip"
+        android:layout_marginTop="12.0dip"
+        android:gravity="center"
+        android:text="Medium Text"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <TextView
+        android:id="@id/textViewNames"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="STUDENTS ENROLLMENT" />
+
+    <EditText
+        android:id="@+id/names"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Students Names">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/admn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Students Admission No" />
+
+    <EditText
+        android:id="@+id/kcpe"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter KCPE Marks"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/cls"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Class" />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Parents Phone Number"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/se"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/BTNuploadCSV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="CSV FILE?Browse " />
+</LinearLayout>
