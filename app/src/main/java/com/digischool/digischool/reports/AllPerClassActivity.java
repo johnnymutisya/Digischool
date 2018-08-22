@@ -76,7 +76,7 @@ public class AllPerClassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_per_class);
         this.listViewTopTen = (ListView) findViewById(R.id.list_top_ten);
         //to copy
-        spinnerTerm =findViewById(R.id.spinnerTerm);
+        spinnerTerm =findViewById(R.id.spinnerTerms);
 
         //end of copy
 
@@ -113,6 +113,7 @@ public class AllPerClassActivity extends AppCompatActivity {
     }
 
     private void fetch(String school_reg, String form) {
+        data.clear();
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("class", form);
