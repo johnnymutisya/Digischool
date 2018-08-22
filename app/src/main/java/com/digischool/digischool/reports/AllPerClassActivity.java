@@ -88,7 +88,7 @@ public class AllPerClassActivity extends AppCompatActivity {
                     term = "TERM 3";
                 }
 
-
+                fetch(school_reg,form);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -117,7 +117,7 @@ public class AllPerClassActivity extends AppCompatActivity {
         params.add("school_id", school_reg);
         params.add("all_students", "all_students");
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
-        params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
+        params.add("term", term);
         this.progress.show();
         c.post(Constants.BASE_URL + "reports.php", params, new C05742());
     }
