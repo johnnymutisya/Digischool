@@ -12,6 +12,12 @@
         android:layout_marginBottom="10.0dip"
         android:entries="@array/exams_array" />
 
+    <Spinner
+        android:id="@+id/spinnerTerms"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10.0dip"
+        android:entries="@array/terms_array" />
     <ListView
         android:id="@+id/list_top_ten"
         android:layout_width="fill_parent"
