@@ -31,6 +31,9 @@ public class BottomTenActivity extends AppCompatActivity {
     ProgressDialog progress;
     String school_reg = "";
     Spinner spinnerExamName;
+    //To Copy
+    Spinner spinnerTerm;
+    String term="TERM 1";
 
     class C03551 implements OnItemSelectedListener {
         C03551() {
@@ -71,6 +74,7 @@ public class BottomTenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_bottom_ten);
         this.listViewTopTen = (ListView) findViewById(R.id.list_top_ten);
+        spinnerTerm =findViewById(R.id.spinnerTerms);
         this.school_reg = getSharedPreferences("database", 0).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
@@ -79,16 +83,36 @@ public class BottomTenActivity extends AppCompatActivity {
         this.listViewTopTen.setAdapter(this.adapter);
         this.spinnerExamName = (Spinner) findViewById(R.id.spinnerExamName);
         this.spinnerExamName.setOnItemSelectedListener(new C03551());
+        spinnerTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position==0) {
+                    term = "TERM 1";
+                }else  if (position==1){
+                    term = "TERM 2";
+                }else if (position==1){
+                    term = "TERM 3";
+                }
+
+                fetch(school_reg,form);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         fetch(this.school_reg, this.form);
     }
 
     private void fetch(String school_reg, String form) {
+        data.clear();
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("class", form);
         params.add("school_id", school_reg);
         params.add("bottom_ten", "bottom_ten");
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
+        params.add("term", term);
         this.progress.show();
         c.post(Constants.BASE_URL + "reports.php", params, new C05752());
     }

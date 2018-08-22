@@ -89,7 +89,7 @@ public class AllPerClassActivity extends AppCompatActivity {
         this.listViewTopTen.setAdapter(this.adapter);
         this.spinnerExamName = (Spinner) findViewById(R.id.spinnerExamName);
         this.spinnerExamName.setOnItemSelectedListener(new C03541());
-
+           //Copy
         spinnerTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -108,19 +108,24 @@ public class AllPerClassActivity extends AppCompatActivity {
 
             }
         });
+        //end copy
 
         fetch(this.school_reg, this.form);
     }
 
     private void fetch(String school_reg, String form) {
+        //copy
         data.clear();
+        //end of copy
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("class", form);
         params.add("school_id", school_reg);
         params.add("all_students", "all_students");
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
+        //copy
         params.add("term", term);
+        //end of copy
         this.progress.show();
         c.post(Constants.BASE_URL + "reports.php", params, new C05742());
     }

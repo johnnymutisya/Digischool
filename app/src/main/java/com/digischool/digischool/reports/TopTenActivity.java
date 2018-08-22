@@ -34,6 +34,9 @@ public class TopTenActivity extends AppCompatActivity {
     String school_reg = "";
     Spinner spinnerExamName;
 
+    Spinner spinnerTerm;
+    String term="TERM 1";
+
     class C03571 implements OnItemSelectedListener {
         C03571() {
         }
@@ -73,6 +76,7 @@ public class TopTenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten);
         this.listViewTopTen = (ListView) findViewById(R.id.list_top_ten);
+        spinnerTerm =findViewById(R.id.spinnerTerms);
         this.school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
@@ -82,15 +86,35 @@ public class TopTenActivity extends AppCompatActivity {
         this.spinnerExamName = (Spinner) findViewById(R.id.spinnerExamName);
         fetch(this.school_reg, this.form);
         this.spinnerExamName.setOnItemSelectedListener(new C03571());
+        spinnerTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position==0) {
+                    term = "TERM 1";
+                }else  if (position==1){
+                    term = "TERM 2";
+                }else if (position==1){
+                    term = "TERM 3";
+                }
+
+                fetch(school_reg,form);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void fetch(String school_reg, String form) {
+        data.clear();
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("class", form);
         params.add("school_id", school_reg);
         params.add("top_ten", "top_ten");
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
+        params.add("term",term);
         Log.d(this.TAG, "fetch: " + this.spinnerExamName.getSelectedItem().toString());
         Log.d(this.TAG, "fetch: " + school_reg);
         Log.d(this.TAG, "fetch: " + form);
