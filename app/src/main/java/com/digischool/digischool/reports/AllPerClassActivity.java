@@ -76,25 +76,7 @@ public class AllPerClassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_per_class);
         this.listViewTopTen = (ListView) findViewById(R.id.list_top_ten);
         //to copy
-        this.spinnerTerm =findViewById(R.id.spinnerTerm);
-        spinnerTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if (position==0) {
-                    term = "TERM 1";
-                }else  if (position==1){
-                    term = "TERM 2";
-                }else if (position==1){
-                    term = "TERM 3";
-                }
-
-                //fetch(school_reg,form);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        spinnerTerm =findViewById(R.id.spinnerTerm);
 
         //end of copy
 
@@ -107,6 +89,26 @@ public class AllPerClassActivity extends AppCompatActivity {
         this.listViewTopTen.setAdapter(this.adapter);
         this.spinnerExamName = (Spinner) findViewById(R.id.spinnerExamName);
         this.spinnerExamName.setOnItemSelectedListener(new C03541());
+
+        spinnerTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position==0) {
+                    term = "TERM 1";
+                }else  if (position==1){
+                    term = "TERM 2";
+                }else if (position==1){
+                    term = "TERM 3";
+                }
+
+                fetch(school_reg,form);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         fetch(this.school_reg, this.form);
     }
 
