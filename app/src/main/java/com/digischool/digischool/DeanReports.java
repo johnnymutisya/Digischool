@@ -9,6 +9,7 @@ import com.digischool.digischool.reports.AllPerClassActivity;
 import com.digischool.digischool.reports.BottomTenActivity;
 import com.digischool.digischool.reports.MeanScoresActivity;
 import com.digischool.digischool.reports.TopTenActivity;
+import com.digischool.digischool.reports.TotalsPerClassActivity;
 
 public class DeanReports extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,10 @@ public class DeanReports extends AppCompatActivity {
 
     public void top_ten(View view) {
         startActivity(new Intent(this, TopTenActivity.class));
+    }
+
+    public void totals_per_class(View view) {
+        startActivity(new Intent(this, TotalsPerClassActivity.class));
     }
 
     public void bottom_ten(View view) {
