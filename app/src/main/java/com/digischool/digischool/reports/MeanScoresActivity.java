@@ -29,7 +29,8 @@ public class MeanScoresActivity extends AppCompatActivity {
     ProgressDialog progress;
     String school_reg = "";
     Spinner spinnerExamName;
-
+    Spinner spinnerTerm;
+    String term="TERM 1";
     class C05762 extends TextHttpResponseHandler {
         C05762() {
         }
@@ -57,6 +58,10 @@ public class MeanScoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_mean_scores);
         this.listView = (ListView) findViewById(R.id.listMeanScores);
+        //to copy
+        spinnerTerm =findViewById(R.id.spinnerTerms);
+
+        //end of copy
         this.data = new ArrayList();
         this.adapter = new ClassTotalsAdapter(this.data, this);
         this.listView.setAdapter(this.adapter);
@@ -73,10 +78,33 @@ public class MeanScoresActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
+        //Copy
+        spinnerTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position==0) {
+                    term = "TERM 1";
+                }else  if (position==1){
+                    term = "TERM 2";
+                }else if (position==1){
+                    term = "TERM 3";
+                }
+
+                fetch(school_reg,"");
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        //end copy
+
         fetch(this.school_reg, type_report);
     }
 
     private void fetch(String school_reg, String type_report) {
+        data.clear();
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         Log.d("TYPE_MEAN", "fetch: " + type_report);
@@ -85,6 +113,9 @@ public class MeanScoresActivity extends AppCompatActivity {
         } else {
             params.add("stream_mean_score", "stream_mean_score");
         }
+        //copy
+        params.add("term", term);
+        //end of copy
         params.add("school_id", school_reg);
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
         this.progress.show();
