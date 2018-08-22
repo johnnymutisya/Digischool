@@ -33,7 +33,8 @@ public class AllPerClassActivity extends AppCompatActivity {
     ProgressDialog progress;
     String school_reg = "";
     Spinner spinnerExamName;
-
+    Spinner spinnerTerm;
+    String term="";
     class C03541 implements OnItemSelectedListener {
         C03541() {
         }
@@ -52,11 +53,11 @@ public class AllPerClassActivity extends AppCompatActivity {
 
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             AllPerClassActivity.this.progress.dismiss();
-            Toast.makeText(AllPerClassActivity.this.getApplicationContext(), "Failed Fetch Data", 1).show();
+            Toast.makeText(AllPerClassActivity.this.getApplicationContext(), "Failed Fetch Data", Toast.LENGTH_LONG).show();
         }
 
         public void onSuccess(int statusCode, Header[] headers, String content) {
-            Toast.makeText(AllPerClassActivity.this.getApplicationContext(), "Completed", 1).show();
+            Toast.makeText(AllPerClassActivity.this.getApplicationContext(), "Completed", Toast.LENGTH_LONG).show();
             AllPerClassActivity.this.progress.dismiss();
             Log.d("TOP_TEN_DATA", "onSuccess: " + content);
             AllPerClassActivity.this.data.clear();
@@ -73,7 +74,8 @@ public class AllPerClassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_per_class);
         this.listViewTopTen = (ListView) findViewById(R.id.list_top_ten);
-        this.school_reg = getSharedPreferences("database", 0).getString("school_reg", "");
+        this.spinnerTerm =findViewById(R.id.spinnerTerm);
+        this.school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
         this.data = new ArrayList();

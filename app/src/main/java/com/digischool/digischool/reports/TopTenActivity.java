@@ -73,7 +73,7 @@ public class TopTenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten);
         this.listViewTopTen = (ListView) findViewById(R.id.list_top_ten);
-        this.school_reg = getSharedPreferences("database", 0).getString("school_reg", "");
+        this.school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
         this.data = new ArrayList();
