@@ -88,7 +88,7 @@ public class AllPerClassActivity extends AppCompatActivity {
                     term = "TERM 3";
                 }
 
-                fetch(school_reg,form);
+                //fetch(school_reg,form);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
