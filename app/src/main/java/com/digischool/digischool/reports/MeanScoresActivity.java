@@ -31,6 +31,7 @@ public class MeanScoresActivity extends AppCompatActivity {
     Spinner spinnerExamName;
     Spinner spinnerTerm;
     String term="TERM 1";
+    String type_report;
     class C05762 extends TextHttpResponseHandler {
         C05762() {
         }
@@ -61,11 +62,13 @@ public class MeanScoresActivity extends AppCompatActivity {
         //to copy
         spinnerTerm =findViewById(R.id.spinnerTerms);
 
+
         //end of copy
         this.data = new ArrayList();
         this.adapter = new ClassTotalsAdapter(this.data, this);
         this.listView.setAdapter(this.adapter);
-        final String type_report = getIntent().getStringExtra("type");
+        type_report = getIntent().getStringExtra("type");
+//        getActionBar().setTitle(type_report.replace("_"," ").toUpperCase());
         this.school_reg = getSharedPreferences("database", 0).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
@@ -91,7 +94,7 @@ public class MeanScoresActivity extends AppCompatActivity {
                     term = "TERM 3";
                 }
 
-                fetch(school_reg,"");
+                fetch(school_reg,type_report);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
