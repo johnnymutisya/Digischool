@@ -33,8 +33,9 @@ public class AllPerClassActivity extends AppCompatActivity {
     ProgressDialog progress;
     String school_reg = "";
     Spinner spinnerExamName;
+    //To Copy
     Spinner spinnerTerm;
-    String term="";
+    String term="TERM 1";
     class C03541 implements OnItemSelectedListener {
         C03541() {
         }
@@ -74,7 +75,30 @@ public class AllPerClassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_per_class);
         this.listViewTopTen = (ListView) findViewById(R.id.list_top_ten);
+        //to copy
         this.spinnerTerm =findViewById(R.id.spinnerTerm);
+        spinnerTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                if (position==0) {
+                    term = "TERM 1";
+                }else  if (position==1){
+                    term = "TERM 2";
+                }else if (position==1){
+                    term = "TERM 3";
+                }
+
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        //end of copy
+
+
         this.school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
@@ -92,6 +116,7 @@ public class AllPerClassActivity extends AppCompatActivity {
         params.add("class", form);
         params.add("school_id", school_reg);
         params.add("all_students", "all_students");
+        params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
         this.progress.show();
         c.post(Constants.BASE_URL + "reports.php", params, new C05742());
