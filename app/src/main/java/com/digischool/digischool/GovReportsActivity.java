@@ -90,4 +90,14 @@ public class GovReportsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void total_schools_county(View view) {
+
+
+    }
+
+    public void total_students_county(View view) {
+
+
+    }
 }
