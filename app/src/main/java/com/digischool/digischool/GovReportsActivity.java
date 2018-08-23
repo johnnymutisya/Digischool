@@ -93,11 +93,12 @@ public class GovReportsActivity extends AppCompatActivity {
 
     public void total_schools_county(View view) {
 
-
+       startActivity(new Intent(this, TotalSchoolsPerCountyActivity.class));
     }
 
     public void total_students_county(View view) {
 
+        startActivity(new Intent(this, TotalStudentsPerCountyActivity.class));
 
     }
 }

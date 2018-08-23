@@ -51,8 +51,8 @@
         <activity android:name=".SubjectNameActivity" />
         <activity android:name=".SchoolTotalActivity" />
         <activity android:name=".EnrollmentActivity" />
-        <activity android:name=".TotalSchoolsPerCountyActivity" />
-        <activity android:name=".TotalStudentsPerCountyActivity"></activity>
+        <activity android:name=".TotalSchoolsPerCountyActivity" android:label="Schools Totals" />
+        <activity android:name=".TotalStudentsPerCountyActivity" android:label="Students Totals"></activity>
     </application>
 
 </manifest>
