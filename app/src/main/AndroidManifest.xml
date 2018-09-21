@@ -58,6 +58,7 @@
         <activity
             android:name=".TotalStudentsPerCountyActivity"
             android:label="Students Totals" />
+        
         <activity android:name=".GradingActivity"
             android:label="Grading System"></activity>
 
