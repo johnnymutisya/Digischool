@@ -51,6 +51,7 @@
         <activity android:name=".SubjectNameActivity" />
         <activity android:name=".SchoolTotalActivity" />
         <activity android:name=".EnrollmentActivity" />
+<<<<<<< HEAD
         <activity
             android:name=".TotalSchoolsPerCountyActivity"
             android:label="Schools Totals" />
@@ -58,6 +59,10 @@
             android:name=".TotalStudentsPerCountyActivity"
             android:label="Students Totals" />
         <activity android:name=".GradingActivity"></activity>
+=======
+        <activity android:name=".TotalSchoolsPerCountyActivity" android:label="Schools Totals" />
+        <activity android:name=".TotalStudentsPerCountyActivity" android:label="Students Totals"></activity>
+>>>>>>> 6a9244e3b9df068018222aec06b39c624553e8c4
     </application>
 
 </manifest>
