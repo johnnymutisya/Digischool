@@ -19,6 +19,9 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
@@ -62,10 +65,15 @@ public class TotalSchoolsPerCountyActivity extends AppCompatActivity {
                 Toast.makeText(TotalSchoolsPerCountyActivity.this, ""+responseString, Toast.LENGTH_SHORT).show();
                 data.clear();
                 try {
-                    Moe[] items = (Moe[]) new Gson().fromJson(responseString, Moe[].class);
-                    for (Moe item : items) {
-                        data.add(item);
+                    JSONArray array =new JSONArray(responseString);
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject obj=array.getJSONObject(i);
+                        String item = obj.getString("item");
+                        String quantity = obj.getString("item");
+                        Moe moe=new Moe(item,quantity);
+                        data.add(moe);
                     }
+
                     adapter.notifyDataSetChanged();
                 }catch (Exception e){
                     Toast.makeText(TotalSchoolsPerCountyActivity.this, "Failed To Process the data", Toast.LENGTH_SHORT).show();
