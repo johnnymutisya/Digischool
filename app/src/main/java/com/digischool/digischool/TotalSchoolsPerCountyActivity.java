@@ -62,14 +62,14 @@ public class TotalSchoolsPerCountyActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 progress.dismiss();
                 Log.d("REPORTS_DATA", "onSuccess: "+responseString);
-                Toast.makeText(TotalSchoolsPerCountyActivity.this, ""+responseString, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(TotalSchoolsPerCountyActivity.this, ""+responseString, Toast.LENGTH_SHORT).show();
                 data.clear();
                 try {
                     JSONArray array =new JSONArray(responseString);
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject obj=array.getJSONObject(i);
                         String item = obj.getString("item");
-                        String quantity = obj.getString("item");
+                        String quantity = obj.getString("quantity");
                         Moe moe=new Moe(item,quantity);
                         data.add(moe);
                     }
