@@ -44,7 +44,7 @@ public class TotalStudentsPerCountyActivity extends AppCompatActivity {
         String url= Constants.BASE_URL+"moe.php";
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params=new RequestParams();
-        params.put("students","total_schools");
+        params.put("data","total_schools");
         progress.show();
         client.post(url, params, new TextHttpResponseHandler() {
             @Override

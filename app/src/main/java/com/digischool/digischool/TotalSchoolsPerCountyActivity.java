@@ -45,7 +45,7 @@ public class TotalSchoolsPerCountyActivity extends AppCompatActivity {
         String url= Constants.BASE_URL+"moe.php";
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params=new RequestParams();
-        params.put("schools","total_schools");
+        params.put("data","total_schools");
         progress.show();
         client.post(url, params, new TextHttpResponseHandler() {
             @Override
@@ -59,6 +59,7 @@ public class TotalSchoolsPerCountyActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 progress.dismiss();
                 Log.d("REPORTS_DATA", "onSuccess: "+responseString);
+                Toast.makeText(TotalSchoolsPerCountyActivity.this, ""+responseString, Toast.LENGTH_SHORT).show();
                 data.clear();
                 try {
                     Moe[] items = (Moe[]) new Gson().fromJson(responseString, Moe[].class);
