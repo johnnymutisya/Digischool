@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".AllExamsActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -50,7 +50,14 @@
         <activity android:name=".StudentMarksActivity" />
         <activity android:name=".SubjectNameActivity" />
         <activity android:name=".SchoolTotalActivity" />
-        <activity android:name=".EnrollmentActivity"></activity>
+        <activity android:name=".EnrollmentActivity" />
+        <activity
+            android:name=".TotalSchoolsPerCountyActivity"
+            android:label="Schools Totals" />
+        <activity
+            android:name=".TotalStudentsPerCountyActivity"
+            android:label="Students Totals" />
+        <activity android:name=".GradingActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    app:cardElevation="10dp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            app:met_textColorHint="#3e3e3e"
+            android:layout_width="match_parent"
+            android:id="@+id/inputLower"
+            android:hint="Lower Limit"
+            android:inputType="number"
+            android:text=""
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="@color/colorPrimary"
+            app:met_helperTextColor="#000"
+            app:met_floatingLabel="highlight"/>
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            app:met_helperTextColor="#000"
+            app:met_textColorHint="#3e3e3e"
+            android:id="@+id/inputUpper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Upper Limit"
+            android:inputType="number"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="20sp"
+            app:met_baseColor="@color/colorPrimary"
+            app:met_floatingLabel="highlight"
+            app:met_singleLineEllipsis="true"/>
+
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            app:met_helperTextColor="#000"
+            app:met_textColorHint="#3e3e3e"
+            android:layout_width="match_parent"
+            android:id="@+id/inputGrade"
+            android:hint="Grade"
+            android:inputType="textCapCharacters"
+            android:text=""
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="@color/colorPrimary"
+            app:met_floatingLabel="highlight"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

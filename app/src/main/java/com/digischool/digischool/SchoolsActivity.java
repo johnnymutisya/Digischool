@@ -18,6 +18,12 @@ public class SchoolsActivity extends AppCompatActivity {
     FancyButton gsm;
     FancyButton streamBtn;
 
+    public void grading(View view) {
+
+       startActivity(new Intent(SchoolsActivity.this, GradingActivity.class));
+
+    }
+
     class C03401 implements OnClickListener {
         C03401() {
         }
