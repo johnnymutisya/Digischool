@@ -48,7 +48,8 @@ public class CustomGradeAdapter extends BaseAdapter {
         }
         Grade grade= data.get(position);
         viewHolder.txtRange.setText(grade.getLower()+" to "+grade.getUpper());
-        viewHolder.tvGradeTxt.setText(grade.getGrade());
+        String grady=grade.getGrade().trim().length()<2?grade.getGrade()+" ":grade.getGrade();
+        viewHolder.tvGradeTxt.setText(grady);
         return convertView;
     }
     static class ViewHolder {

@@ -8,20 +8,23 @@
 
 
     <TextView
+        android:gravity="start"
         android:id="@+id/tvRange"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"
         android:textSize="18sp"
         android:text="90 - 100"/>
 
     <TextView
-        android:gravity="left"
+        android:background="#878686"
+        android:gravity="start"
         android:paddingLeft="5dp"
         android:textSize="18sp"
         android:id="@+id/tvGrade"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="A"/>
+
 </LinearLayout>

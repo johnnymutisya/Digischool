@@ -45,7 +45,12 @@ public class GradingActivity extends AppCompatActivity {
     private void dialogAdd() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Add A New Grade Range");
-        dialog.setMessage("Please provide a valid range");
+        String mess="Enter Your Grades beginning from the top";
+        if (data.size()>0){
+            Grade grade=data.get(data.size()-1);
+            mess="The last Grade added was "+grade.getGrade() +" in the range "+ grade.getLower()+"-"+grade.getUpper();
+        }
+        dialog.setMessage(mess);
         LayoutInflater layoutInflater = LayoutInflater.from(this);
         View register_layout = layoutInflater.inflate(R.layout.dialog_layout, null);
         final MaterialEditText inputUpper = register_layout.findViewById(R.id.inputUpper);
