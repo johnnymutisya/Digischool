@@ -25,6 +25,7 @@
         android:layout_marginTop="18.0dip">
 
         <EditText
+            android:maxLines="1"
             android:id="@+id/regno"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:maxLines="1"
             android:id="@+id/psd"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
