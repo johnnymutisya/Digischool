@@ -38,6 +38,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:imeOptions="actionSend"
             android:maxLines="1"
             android:id="@+id/psd"
             android:layout_width="fill_parent"
