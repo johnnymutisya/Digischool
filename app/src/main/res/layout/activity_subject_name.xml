@@ -15,13 +15,13 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/str"
+        android:id="@+id/sub"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Save" />
 
     <ListView
-        android:id="@+id/listStreams"
+        android:id="@+id/listSubjects"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16.0dip" />
