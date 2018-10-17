@@ -26,6 +26,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,12 +88,12 @@ public class AttendanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_attendance);
         this.listView = findViewById(R.id.listAttendance);
-        this.data = new ArrayList();
-        this.adapter = new AttendanceAdapter(this.data, this);
-        this.listView.setAdapter(this.adapter);
-        this.spinnerSubjects = findViewById(R.id.spinnerSubjects);
+        data = new ArrayList();
+        adapter = new AttendanceAdapter(this.data, this);
+        listView.setAdapter(this.adapter);
+        spinnerSubjects = findViewById(R.id.spinnerSubjects);
 
-        adapterSubjects=new ArrayAdapter(this, android.R.layout.simple_spinner_item, subjectsArray);
+        adapterSubjects=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new String[]{"Maths","English"});
         adapterSubjects.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSubjects.setAdapter(adapter);
 
@@ -127,6 +129,9 @@ public class AttendanceActivity extends AppCompatActivity {
                         subjectsArray.add(array.getJSONObject(i).getString("subject_name"));
                     }
                    adapterSubjects.notifyDataSetChanged();
+                    Log.d("DATA", "onSuccess: "+responseString);
+                    for(String s:subjectsArray)
+                        Log.d("DATA", "Subject : "+s);
                     Toast.makeText(AttendanceActivity.this, "Count "+subjectsArray.size(), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
