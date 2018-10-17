@@ -41,7 +41,10 @@ public class SubjectNameActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                save_subject(inputSubject.getText().toString().trim(), school_reg);
+                if(!inputSubject.getText().toString().trim().isEmpty()){
+                    save_subject(inputSubject.getText().toString().trim(), school_reg);
+                }
+
             }
         });
     }
@@ -61,6 +64,7 @@ public class SubjectNameActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                progress.dismiss();
                 Toast.makeText(SubjectNameActivity.this, "Subject saved succesfully" +
                         "", Toast.LENGTH_SHORT).show();
 
