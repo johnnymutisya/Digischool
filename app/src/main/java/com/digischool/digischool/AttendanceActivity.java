@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -39,6 +40,8 @@ public class AttendanceActivity extends AppCompatActivity {
     ProgressDialog progress;
     String school_reg = "";
     Spinner spinnerSubjects;
+    ArrayList<String> subjectsArray=new ArrayList<>();
+    ArrayAdapter<String> adapterSubjects;
 
     class C03231 implements OnItemSelectedListener {
         C03231() {
@@ -87,11 +90,46 @@ public class AttendanceActivity extends AppCompatActivity {
         this.adapter = new AttendanceAdapter(this.data, this);
         this.listView.setAdapter(this.adapter);
         this.spinnerSubjects = (Spinner) findViewById(R.id.spinnerSubjects);
+
+        adapterSubjects=new ArrayAdapter(this, android.R.layout.simple_spinner_item, subjectsArray);
+        adapterSubjects.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSubjects.setAdapter(adapter);
+
         this.spinnerSubjects.setOnItemSelectedListener(new C03231());
         this.inputClass = (EditText) findViewById(R.id.inputClass);
         this.school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Loading....");
+        fetchSubjects();
+    }
+    public void fetchSubjects(){
+        String school_reg=getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
+        AsyncHttpClient c = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.add("school_reg", school_reg);
+        this.progress.show();
+        c.post(Constants.BASE_URL + "subjects.php", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                progress.dismiss();
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                progress.dismiss();
+                Toast.makeText(AttendanceActivity.this, ""+responseString, Toast.LENGTH_SHORT).show();
+                try {
+                    JSONArray array=new JSONArray(responseString);
+                    for (int i = 0; i < array.length(); i++) {
+                        subjectsArray.add(array.getJSONObject(i).getString("subject_name"));
+                    }
+                    adapterSubjects.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
