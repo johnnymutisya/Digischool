@@ -85,24 +85,26 @@ public class AttendanceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_attendance);
-        this.listView = (ListView) findViewById(R.id.listAttendance);
+        this.listView = findViewById(R.id.listAttendance);
         this.data = new ArrayList();
         this.adapter = new AttendanceAdapter(this.data, this);
         this.listView.setAdapter(this.adapter);
-        this.spinnerSubjects = (Spinner) findViewById(R.id.spinnerSubjects);
+        this.spinnerSubjects = findViewById(R.id.spinnerSubjects);
 
         adapterSubjects=new ArrayAdapter(this, android.R.layout.simple_spinner_item, subjectsArray);
         adapterSubjects.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSubjects.setAdapter(adapter);
 
         this.spinnerSubjects.setOnItemSelectedListener(new C03231());
-        this.inputClass = (EditText) findViewById(R.id.inputClass);
+        this.inputClass = findViewById(R.id.inputClass);
         this.school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Loading....");
+
         fetchSubjects();
     }
-    public void fetchSubjects(){
+    public void fetchSubjects()
+    {
         String school_reg=getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -112,9 +114,9 @@ public class AttendanceActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 progress.dismiss();
+                Toast.makeText(AttendanceActivity.this, "Failed", Toast.LENGTH_SHORT).show();
 
             }
-
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 progress.dismiss();
@@ -124,7 +126,8 @@ public class AttendanceActivity extends AppCompatActivity {
                     for (int i = 0; i < array.length(); i++) {
                         subjectsArray.add(array.getJSONObject(i).getString("subject_name"));
                     }
-                    adapterSubjects.notifyDataSetChanged();
+                   adapterSubjects.notifyDataSetChanged();
+                    Toast.makeText(AttendanceActivity.this, "Count "+subjectsArray.size(), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
