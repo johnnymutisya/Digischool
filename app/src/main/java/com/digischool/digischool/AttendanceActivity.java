@@ -91,11 +91,12 @@ public class AttendanceActivity extends AppCompatActivity {
         data = new ArrayList();
         adapter = new AttendanceAdapter(this.data, this);
         listView.setAdapter(this.adapter);
+
         spinnerSubjects = findViewById(R.id.spinnerSubjects);
 
-        adapterSubjects=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new String[]{"Maths","English"});
+        adapterSubjects=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, subjectsArray);
         adapterSubjects.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSubjects.setAdapter(adapter);
+        spinnerSubjects.setAdapter(adapterSubjects);
 
         this.spinnerSubjects.setOnItemSelectedListener(new C03231());
         this.inputClass = findViewById(R.id.inputClass);

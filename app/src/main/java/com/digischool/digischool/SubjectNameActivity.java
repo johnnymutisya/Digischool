@@ -67,6 +67,7 @@ public class SubjectNameActivity extends AppCompatActivity {
                 progress.dismiss();
                 Toast.makeText(SubjectNameActivity.this, "Subject saved succesfully" +
                         "", Toast.LENGTH_SHORT).show();
+                inputSubject.setText("");
 
             }
         });
