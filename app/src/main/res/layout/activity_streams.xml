@@ -7,7 +7,7 @@
     android:padding="16.0dip">
 
     <EditText
-        android:id="@id/inputStream"
+        android:id="@+id/inputStream"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
