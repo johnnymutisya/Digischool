@@ -61,7 +61,8 @@ public class SubjectNameActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                Toast.makeText(SubjectNameActivity.this, "Subject saved succesfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SubjectNameActivity.this, "Subject saved succesfully" +
+                        "", Toast.LENGTH_SHORT).show();
 
             }
         });
