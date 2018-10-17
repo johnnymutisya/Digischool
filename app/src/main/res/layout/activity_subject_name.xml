@@ -7,11 +7,11 @@
     android:padding="16.0dip">
 
     <EditText
-        android:id="@+id/inputStream"
+        android:id="@+id/inputSubject"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter Subject or Unit Name"
+        android:hint="Enter Stream Name"
         android:inputType="textPersonName" />
 
     <Button
@@ -21,7 +21,7 @@
         android:text="Save" />
 
     <ListView
-        android:id="@+id/inputsubject"
+        android:id="@+id/listSubjects"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16.0dip" />
