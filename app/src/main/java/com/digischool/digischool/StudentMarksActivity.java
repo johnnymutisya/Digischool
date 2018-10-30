@@ -26,7 +26,12 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +39,7 @@ import org.json.JSONObject;
 public class StudentMarksActivity extends AppCompatActivity {
     private static final String TAG = "STUDENT_MARKS";
     CustomAdapter adapter;
-    EditText admn;
+    EditText admn, inputYear;
     ArrayList<Score> data;
     String exam_name = "CAT 1";
     boolean isParent = false;
@@ -46,6 +51,7 @@ public class StudentMarksActivity extends AppCompatActivity {
     TextView textViewNames;
     TextView tvExam;
     TextView tvTotal;
+    String currentYear;
 
     class C03471 implements TextWatcher {
         C03471() {
@@ -126,7 +132,11 @@ public class StudentMarksActivity extends AppCompatActivity {
         if (this.isParent) {
             this.schoolID = getIntent().getStringExtra("school_reg");
         }
+        Date now =new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("Y");
+        currentYear=dateFormat.format(now);
         this.admn = (EditText) findViewById(R.id.admn);
+        this.inputYear = (EditText) findViewById(R.id.inputYear);
         this.textViewNames = (TextView) findViewById(R.id.textViewNames);
         this.tvExam = (TextView) findViewById(R.id.textViewExam);
         this.tvTotal = (TextView) findViewById(R.id.tvTotal);
@@ -147,10 +157,12 @@ public class StudentMarksActivity extends AppCompatActivity {
         this.tvTotal.setText("");
         this.adapter.notifyDataSetChanged();
         this.textViewNames.setText("");
+        String year = inputYear.getText().toString().trim().isEmpty()?currentYear:inputYear.getText().toString().trim();
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("adm", this.admn.getText().toString());
         params.add("exam_name", this.exam_name);
+        params.add("year", year);
         params.add("term", this.spinnerTerm.getSelectedItem().toString());
         Log.d(TAG, "search: " + this.admn.getText().toString() + "  " + this.spinnerTerm.getSelectedItem().toString() + "  " + this.schoolID);
         Log.d(TAG, "term: " + this.spinnerTerm.getSelectedItem().toString());
