@@ -128,6 +128,7 @@ public class StudentMarksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_get_student_marks);
+/*        Log.d(TAG, "onCreate: OPENED");
         this.isParent = getIntent().getBooleanExtra("isParent", false);
         if (this.isParent) {
             this.schoolID = getIntent().getStringExtra("school_reg");
@@ -149,7 +150,7 @@ public class StudentMarksActivity extends AppCompatActivity {
         this.progress = new ProgressDialog(this);
         this.progress.setMessage("Loading ...");
         this.admn.addTextChangedListener(new C03471());
-        this.spinnerExamName.setOnItemSelectedListener(new C03482());
+        this.spinnerExamName.setOnItemSelectedListener(new C03482());*/
     }
 
     protected void search(CharSequence text) {
