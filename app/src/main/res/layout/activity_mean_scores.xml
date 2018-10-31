@@ -18,6 +18,14 @@
         android:layout_marginBottom="10.0dip"
         android:entries="@array/terms_array" />
 
+    <!--Year-->
+    <EditText
+        android:id="@+id/inputYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Year"
+        android:inputType="number"/>
+
     <ListView
         android:id="@+id/listMeanScores"
         android:layout_width="fill_parent"
