@@ -5,9 +5,16 @@
     android:layout_height="fill_parent"
     android:background="#ffbec4ba"
     android:orientation="vertical">
-
+    <EditText
+        android:id="@+id/inputYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Year"
+        android:inputType="number"/>
     <ListView
         android:id="@+id/listTotalPerClass"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
+
+
 </LinearLayout>
