@@ -6,10 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".TotalSchoolsPerCountyActivity">
+    <EditText
+        android:id="@+id/inputYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Year"
+        android:inputType="number"/>
 
 
     <ListView
         android:id="@+id/listTotal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 </LinearLayout>
