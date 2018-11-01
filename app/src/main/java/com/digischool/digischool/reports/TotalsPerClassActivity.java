@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -80,5 +81,9 @@ public class TotalsPerClassActivity extends AppCompatActivity {
         params.add("totals_per_stream", "totals_per_stream");
         this.progress.show();
         c.post(Constants.BASE_URL + "reports.php", params, new C05801());
+    }
+
+    public void refresh(View v){
+       fetch(school_reg);
     }
 }
