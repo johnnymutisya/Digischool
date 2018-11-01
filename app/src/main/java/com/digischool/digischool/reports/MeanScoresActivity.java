@@ -38,6 +38,7 @@ public class MeanScoresActivity extends AppCompatActivity {
     Spinner spinnerTerm;
     String term="TERM 1";
     String type_report;
+
     class C05762 extends TextHttpResponseHandler {
         C05762() {
         }
