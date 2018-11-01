@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -23,7 +24,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class AllPerClassActivity extends AppCompatActivity {
     RankingsAdapter adapter;
@@ -36,6 +40,8 @@ public class AllPerClassActivity extends AppCompatActivity {
     //To Copy
     Spinner spinnerTerm;
     String term="TERM 1";
+    String currentYear;
+    EditText inputYear;
     class C03541 implements OnItemSelectedListener {
         C03541() {
         }
@@ -88,6 +94,10 @@ public class AllPerClassActivity extends AppCompatActivity {
         this.adapter = new RankingsAdapter(this.data, this);
         this.listViewTopTen.setAdapter(this.adapter);
         this.spinnerExamName = (Spinner) findViewById(R.id.spinnerExamName);
+        Date now =new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("Y");
+        currentYear=dateFormat.format(now);
+        this.inputYear = (EditText) findViewById(R.id.inputYear);
         this.spinnerExamName.setOnItemSelectedListener(new C03541());
            //Copy
         spinnerTerm.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -122,6 +132,8 @@ public class AllPerClassActivity extends AppCompatActivity {
         params.add("class", form);
         params.add("school_id", school_reg);
         params.add("all_students", "all_students");
+        String year = inputYear.getText().toString().trim().isEmpty()?currentYear:inputYear.getText().toString().trim();
+        params.add("year", year);
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
         //copy
         params.add("term", term);

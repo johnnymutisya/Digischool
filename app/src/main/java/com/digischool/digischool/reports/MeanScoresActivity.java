@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import com.digischool.digischool.R;
 import android.widget.Spinner;
@@ -20,7 +21,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MeanScoresActivity extends AppCompatActivity {
     ClassTotalsAdapter adapter;
@@ -29,6 +33,8 @@ public class MeanScoresActivity extends AppCompatActivity {
     ProgressDialog progress;
     String school_reg = "";
     Spinner spinnerExamName;
+    String currentYear;
+    EditText inputYear;
     Spinner spinnerTerm;
     String term="TERM 1";
     String type_report;
@@ -73,6 +79,10 @@ public class MeanScoresActivity extends AppCompatActivity {
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
         this.spinnerExamName = (Spinner) findViewById(R.id.spinnerExamName);
+        Date now =new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("Y");
+        currentYear=dateFormat.format(now);
+        this.inputYear = (EditText) findViewById(R.id.inputYear);
         this.spinnerExamName.setOnItemSelectedListener(new OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 MeanScoresActivity.this.fetch(MeanScoresActivity.this.school_reg, type_report);
@@ -118,6 +128,8 @@ public class MeanScoresActivity extends AppCompatActivity {
         }
         //copy
         params.add("term", term);
+        String year = inputYear.getText().toString().trim().isEmpty()?currentYear:inputYear.getText().toString().trim();
+        params.add("year", year);
         //end of copy
         params.add("school_id", school_reg);
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());

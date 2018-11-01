@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,7 +23,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TopTenActivity extends AppCompatActivity {
     String TAG = "EXAM_NAME";
@@ -36,6 +40,8 @@ public class TopTenActivity extends AppCompatActivity {
 
     Spinner spinnerTerm;
     String term="TERM 1";
+    String currentYear;
+    EditText inputYear;
 
     class C03571 implements OnItemSelectedListener {
         C03571() {
@@ -76,6 +82,10 @@ public class TopTenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten);
         this.listViewTopTen = (ListView) findViewById(R.id.list_top_ten);
+        Date now =new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("Y");
+        currentYear=dateFormat.format(now);
+        this.inputYear = (EditText) findViewById(R.id.inputYear);
         spinnerTerm =findViewById(R.id.spinnerTerms);
         this.school_reg = getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
         this.progress = new ProgressDialog(this);
@@ -112,6 +122,8 @@ public class TopTenActivity extends AppCompatActivity {
         RequestParams params = new RequestParams();
         params.add("class", form);
         params.add("school_id", school_reg);
+        String year = inputYear.getText().toString().trim().isEmpty()?currentYear:inputYear.getText().toString().trim();
+        params.add("year", year);
         params.add("top_ten", "top_ten");
         params.add("exam_name", this.spinnerExamName.getSelectedItem().toString());
         params.add("term",term);
