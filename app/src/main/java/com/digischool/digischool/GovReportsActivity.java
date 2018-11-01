@@ -19,6 +19,7 @@ public class GovReportsActivity extends AppCompatActivity {
     EditText inputSchooID;
     String school_reg = "";
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_gov_reports);
