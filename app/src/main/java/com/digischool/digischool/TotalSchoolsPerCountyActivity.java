@@ -32,19 +32,15 @@ import cz.msebera.android.httpclient.Header;
 public class TotalSchoolsPerCountyActivity extends AppCompatActivity {
    ListView mListView;
    MoeAdapter adapter;
-    String currentYear;
-    EditText inputYear;
-   ArrayList<Moe> data;
+
+    ArrayList<Moe> data;
     ProgressDialog progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_total_schools_per_county);
         mListView=findViewById(R.id.listTotal);
-        Date now =new Date();
-        SimpleDateFormat dateFormat=new SimpleDateFormat("Y");
-        currentYear=dateFormat.format(now);
-        this.inputYear = (EditText) findViewById(R.id.inputYear);
+
         data=new ArrayList<>();
         adapter=new MoeAdapter(data,this);
         mListView.setAdapter(adapter);
@@ -58,8 +54,6 @@ public class TotalSchoolsPerCountyActivity extends AppCompatActivity {
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params=new RequestParams();
         params.put("data","total_schools");
-        String year = inputYear.getText().toString().trim().isEmpty()?currentYear:inputYear.getText().toString().trim();
-        params.add("year", year);
         progress.show();
         client.post(url, params, new TextHttpResponseHandler() {
             @Override

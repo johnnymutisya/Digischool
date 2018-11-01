@@ -53,7 +53,7 @@ public class TotalStudentsPerCountyActivity extends AppCompatActivity {
         String url= Constants.BASE_URL+"moe.php";
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params=new RequestParams();
-        params.put("data","total_schools");
+        params.put("data","total_students");
         String year = inputYear.getText().toString().trim().isEmpty()?currentYear:inputYear.getText().toString().trim();
         params.add("year", year);
         progress.show();
