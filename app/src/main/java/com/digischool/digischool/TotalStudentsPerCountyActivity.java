@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,13 +18,17 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
 public class TotalStudentsPerCountyActivity extends AppCompatActivity {
     ListView mListView;
     MoeAdapter adapter;
+    String currentYear;
+    EditText inputYear;
     ArrayList<Moe> data;
     ProgressDialog progress;
     //https://code.tutsplus.com/tutorials/how-to-collaborate-on-github--net-34267
@@ -32,6 +37,10 @@ public class TotalStudentsPerCountyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_total_students_per_county);
         mListView=findViewById(R.id.listTotal);
+        Date now =new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("Y");
+        currentYear=dateFormat.format(now);
+        this.inputYear = (EditText) findViewById(R.id.inputYear);
         data=new ArrayList<>();
         adapter=new MoeAdapter(data,this);
         mListView.setAdapter(adapter);
@@ -45,6 +54,8 @@ public class TotalStudentsPerCountyActivity extends AppCompatActivity {
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params=new RequestParams();
         params.put("data","total_schools");
+        String year = inputYear.getText().toString().trim().isEmpty()?currentYear:inputYear.getText().toString().trim();
+        params.add("year", year);
         progress.show();
         client.post(url, params, new TextHttpResponseHandler() {
             @Override

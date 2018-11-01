@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,7 +17,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TotalsPerClassActivity extends AppCompatActivity {
     ClassTotalsAdapter adapter;
@@ -24,6 +28,8 @@ public class TotalsPerClassActivity extends AppCompatActivity {
     ListView listView;
     ProgressDialog progress;
     String school_reg = "";
+    String currentYear;
+    EditText inputYear;
 
     class C05801 extends TextHttpResponseHandler {
         C05801() {
@@ -52,6 +58,10 @@ public class TotalsPerClassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_totals_per_class);
         this.listView = (ListView) findViewById(R.id.listTotalPerClass);
+        Date now =new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("Y");
+        currentYear=dateFormat.format(now);
+        this.inputYear = (EditText) findViewById(R.id.inputYear);
         this.data = new ArrayList();
         this.adapter = new ClassTotalsAdapter(this.data, this);
         this.listView.setAdapter(this.adapter);
@@ -65,6 +75,8 @@ public class TotalsPerClassActivity extends AppCompatActivity {
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.add("school_id", school_reg);
+        String year = inputYear.getText().toString().trim().isEmpty()?currentYear:inputYear.getText().toString().trim();
+        params.add("year", year);
         params.add("totals_per_stream", "totals_per_stream");
         this.progress.show();
         c.post(Constants.BASE_URL + "reports.php", params, new C05801());
