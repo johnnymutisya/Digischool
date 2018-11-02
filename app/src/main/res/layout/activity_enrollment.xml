@@ -71,7 +71,7 @@
         android:id="@+id/photoBtn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Take Photo" />
+        android:text="Iris camera?Get IRIS " />
 
     <Button
         android:layout_marginBottom="10dp"
