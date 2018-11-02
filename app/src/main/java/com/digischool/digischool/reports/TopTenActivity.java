@@ -153,4 +153,9 @@ public class TopTenActivity extends AppCompatActivity {
         fetch(this.school_reg, this.form);
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void refresh(View view) {
+        fetch(school_reg, form);
+    }
 }

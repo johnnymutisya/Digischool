@@ -137,4 +137,8 @@ public class MeanScoresActivity extends AppCompatActivity {
         this.progress.show();
         c.post(Constants.BASE_URL + "reports.php", params, new C05762());
     }
+
+    public void refresh(View view) {
+        fetch(school_reg,type_report);
+    }
 }

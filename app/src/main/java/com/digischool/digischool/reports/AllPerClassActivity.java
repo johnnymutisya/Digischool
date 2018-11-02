@@ -148,7 +148,7 @@ public class AllPerClassActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        String form = "1";
+
         if (item.getItemId() == R.id.action_f1) {
             form = "1";
         } else if (item.getItemId() == R.id.action_f2) {
@@ -161,5 +161,9 @@ public class AllPerClassActivity extends AppCompatActivity {
         }
         fetch(this.school_reg, form);
         return super.onOptionsItemSelected(item);
+    }
+
+    public void refresh(View view) {
+        fetch(school_reg, form);
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,5 +72,9 @@ public class SchoolTotalActivity extends AppCompatActivity {
         params.add("total_for_school", "total_for_school");
         this.progress.show();
         c.post(Constants.BASE_URL + "reports.php", params, new C05771());
+    }
+
+    public void refresh(View view) {
+        fetch(school_reg);
     }
 }

@@ -32,7 +32,7 @@ public class TotalPerStreamActivity extends AppCompatActivity {
     EditText inputYear;
 
     public void refresh(View view) {
-
+       fetch(school_reg);
     }
 
     class C05791 extends TextHttpResponseHandler {
