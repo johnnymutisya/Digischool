@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="16.0dip">
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/textViewSchool"
@@ -60,12 +60,21 @@
         android:inputType="phone" />
 
     <Button
+        android:layout_marginBottom="10dp"
         android:id="@+id/se"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Submit" />
 
     <Button
+        android:layout_marginBottom="10dp"
+        android:id="@+id/photoBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Take Photo" />
+
+    <Button
+        android:layout_marginBottom="10dp"
         android:id="@+id/BTNuploadCSV"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
