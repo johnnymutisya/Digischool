@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,6 +30,10 @@ public class TotalPerStreamActivity extends AppCompatActivity {
     String school_reg = "";
     String currentYear;
     EditText inputYear;
+
+    public void refresh(View view) {
+
+    }
 
     class C05791 extends TextHttpResponseHandler {
         C05791() {
