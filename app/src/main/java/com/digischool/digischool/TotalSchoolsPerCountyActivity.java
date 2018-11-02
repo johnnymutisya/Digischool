@@ -78,7 +78,6 @@ public class TotalSchoolsPerCountyActivity extends AppCompatActivity {
                         Moe moe=new Moe(item,quantity);
                         data.add(moe);
                     }
-
                     adapter.notifyDataSetChanged();
                 }catch (Exception e){
                     Toast.makeText(TotalSchoolsPerCountyActivity.this, "Failed To Process the data", Toast.LENGTH_SHORT).show();

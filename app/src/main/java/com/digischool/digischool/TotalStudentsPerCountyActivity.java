@@ -99,5 +99,6 @@ public class TotalStudentsPerCountyActivity extends AppCompatActivity {
     }
 
     public void refresh(View view) {
+        fetch();
     }
 }
