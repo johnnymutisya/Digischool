@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -95,5 +96,8 @@ public class TotalStudentsPerCountyActivity extends AppCompatActivity {
             fetch();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void refresh(View view) {
     }
 }
