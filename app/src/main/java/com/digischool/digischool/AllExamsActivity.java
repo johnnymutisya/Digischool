@@ -76,6 +76,12 @@ public class AllExamsActivity extends AppCompatActivity {
         }
 
         public void onClick(View arg0) {
+            String s=edtScore.getText().toString().trim();
+            if (s.isEmpty() || Integer.parseInt(s)>100)
+            {
+                Toast.makeText(AllExamsActivity.this, "Invalid Score", Toast.LENGTH_SHORT).show();
+                return;
+            }
             AsyncHttpClient c = new AsyncHttpClient();
             RequestParams params = new RequestParams();
             params.add("adm", AllExamsActivity.this.edtAdmn.getText().toString());

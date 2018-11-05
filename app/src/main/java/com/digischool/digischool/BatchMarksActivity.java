@@ -88,7 +88,8 @@ public class BatchMarksActivity extends AppCompatActivity {
             alertDialogBuilderUserInput.setCancelable(false).setPositiveButton(HttpPost.METHOD_NAME, new OnClickListener() {
                 public void onClick(DialogInterface dialogBox, int id) {
                     String x = userInputDialogEditText.getText().toString().trim();
-                    if (!x.isEmpty()) {
+                    if (!x.isEmpty() && Integer.parseInt(x)<100) {
+
                         ((Marks) BatchMarksActivity.this.data.get(position)).setScore(Integer.parseInt(x));
                         BatchMarksActivity.this.adapter.notifyDataSetChanged();
                     }
