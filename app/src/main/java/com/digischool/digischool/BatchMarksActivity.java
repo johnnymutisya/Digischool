@@ -93,6 +93,10 @@ public class BatchMarksActivity extends AppCompatActivity {
                         ((Marks) BatchMarksActivity.this.data.get(position)).setScore(Integer.parseInt(x));
                         BatchMarksActivity.this.adapter.notifyDataSetChanged();
                     }
+                    else {
+                        Toast.makeText(BatchMarksActivity.this, "Invalid Score "+x, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
             }).setNegativeButton((CharSequence) "Cancel", new C03251());
             alertDialogBuilderUserInput.create().show();
