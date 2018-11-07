@@ -3,7 +3,11 @@ package com.digischool.digischool;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +29,10 @@ import cz.msebera.android.httpclient.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class EnrollmentActivity extends AppCompatActivity {
     EditText admn;
     EditText cls;
@@ -33,6 +42,11 @@ public class EnrollmentActivity extends AppCompatActivity {
     ProgressDialog progress;
     Button se;
     TextView textViewSchool;
+    //image upload
+    private static final int PICK_IMAGE_REQUEST = 20000;
+    Bitmap bitmap;
+    ImageView imgView;
+    String imgPath="";
 
     class C03281 implements OnClickListener {
 
@@ -73,9 +87,22 @@ public class EnrollmentActivity extends AppCompatActivity {
         }
 
         public void onClick(View arg0) {
+
+            if (imgPath.isEmpty()){
+                Toast.makeText(EnrollmentActivity.this, "Make sure you have picked an image", Toast.LENGTH_SHORT).show();
+                return;
+            }
             EnrollmentActivity.this.progress.show();
             AsyncHttpClient c = new AsyncHttpClient();
             RequestParams params = new RequestParams();
+            File file= new File(imgPath);
+
+            try {
+                params.put("file", file);
+            } catch (FileNotFoundException e) {
+                Toast.makeText(EnrollmentActivity.this, "Error while getting the file", Toast.LENGTH_SHORT).show();
+            }
+
             params.add("names", EnrollmentActivity.this.names.getText().toString());
             params.add("admn", EnrollmentActivity.this.admn.getText().toString());
             params.add("kcpe", EnrollmentActivity.this.kcpe.getText().toString());
@@ -119,7 +146,6 @@ public class EnrollmentActivity extends AppCompatActivity {
             prefs.putBoolean("logged_in", false);
             prefs.commit();
             Intent x = new Intent(this, LoginActivity.class);
-            x.addFlags(335577088);
             startActivity(x);
             finish();
         }
@@ -127,6 +153,52 @@ public class EnrollmentActivity extends AppCompatActivity {
     }
 
     public void pick_image(View v){
-        
+       showFileChooser();
     }
+
+    //STEP 2 Display gallery to allow the user to choose the photo
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+    //STEP 3 Display the selected image on the image view and set the path
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+                //Getting the Bitmap from Gallery
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                //Setting the Bitmap to ImageView
+               // imgView.setImageBitmap(bitmap);
+                imgPath=getPath(filePath);
+                Log.d("PATH",imgPath);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    //method to get the file path from uri
+    public String getPath(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        String document_id = cursor.getString(0);
+        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+        cursor.close();
+
+        cursor = getContentResolver().query(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+        cursor.moveToFirst();
+        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+        cursor.close();
+
+        return path;
+    }
+
 }
