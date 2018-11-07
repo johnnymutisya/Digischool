@@ -125,4 +125,8 @@ public class EnrollmentActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void pick_image(View v){
+        
+    }
 }
