@@ -101,6 +101,7 @@ public class EnrollmentActivity extends AppCompatActivity {
                 params.put("fileToUpload", file);
             } catch (FileNotFoundException e) {
                 Toast.makeText(EnrollmentActivity.this, "Error while getting the file", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             params.add("names", EnrollmentActivity.this.names.getText().toString());
