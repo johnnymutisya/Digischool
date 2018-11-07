@@ -98,7 +98,7 @@ public class EnrollmentActivity extends AppCompatActivity {
             File file= new File(imgPath);
 
             try {
-                params.put("file", file);
+                params.put("fileToUpload", file);
             } catch (FileNotFoundException e) {
                 Toast.makeText(EnrollmentActivity.this, "Error while getting the file", Toast.LENGTH_SHORT).show();
             }
