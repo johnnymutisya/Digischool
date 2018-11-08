@@ -249,12 +249,15 @@ public class EnrollmentActivity extends AppCompatActivity {
         try {
             String[] proj = { MediaStore.Images.Media.DATA };
             cursor =getContentResolver().query(contentUri,  proj, null, null, null);
+            Log.d(TAG, "COLUMN_COUNT "+cursor.getColumnCount());
+            Log.d(TAG, "COLUMN_NAMES: "+cursor.getColumnNames());
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             Log.d(TAG, "REAL_PATH: "+cursor.getString(column_index));
             return cursor.getString(column_index);
         } catch (Exception e) {
             Log.e(TAG, "getRealPathFromURI Exception : " + e.toString());
+            e.printStackTrace();
             return "";
         } finally {
             if (cursor != null) {
