@@ -107,6 +107,10 @@ public class EnrollmentActivity extends AppCompatActivity {
             AsyncHttpClient c = new AsyncHttpClient();
             RequestParams params = new RequestParams();
             File file= new File(imgPath);
+            Log.d(TAG, "onClick: "+file.getName());
+            Log.d(TAG, "onClick: "+file.getPath());
+            Log.d(TAG, "onClick: "+file.getTotalSpace());
+
 
             try {
                 params.put("fileToUpload", file);
@@ -215,7 +219,8 @@ public class EnrollmentActivity extends AppCompatActivity {
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
                 //imageView.setImageURI(file);//TODO
-                imgPath= getPath(file);
+               // imgPath= getPath(file);
+
                 Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
             }
         }
