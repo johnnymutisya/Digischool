@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -51,6 +52,8 @@ public class EnrollmentActivity extends AppCompatActivity {
     Bitmap bitmap;
     ImageView imgView;
     String imgPath="";
+
+    Button takePictureButton;
 
     class C03281 implements OnClickListener {
 
@@ -131,6 +134,7 @@ public class EnrollmentActivity extends AppCompatActivity {
         this.cls = (EditText) findViewById(R.id.cls);
         this.phone = (EditText) findViewById(R.id.phone);
         this.textViewSchool = (TextView) findViewById(R.id.textViewSchool);
+        takePictureButton=findViewById(R.id.photoBtn);
         this.progress = new ProgressDialog(this);
         this.progress.setMessage("Sending ...");
         CharSequence school_name = getSharedPreferences("database", 0).getString("name_school", "");
@@ -138,6 +142,11 @@ public class EnrollmentActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(school_name);
         this.se = (Button) findViewById(R.id.se);
         this.se.setOnClickListener(new C03281());
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+            takePictureButton.setEnabled(false);
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -163,14 +172,7 @@ public class EnrollmentActivity extends AppCompatActivity {
 
     //STEP 2 Display gallery to allow the user to choose the photo
     private void showFileChooser() {
-        if (isStoragePermissionGranted()) {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
-        }else{
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-        }
+      
     }
     //STEP 3 Display the selected image on the image view and set the path
     @Override
@@ -233,10 +235,11 @@ public class EnrollmentActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-            Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
-            //resume tasks needing this permission
-            showFileChooser();
+        if (requestCode == 0) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                takePictureButton.setEnabled(true);
+            }
         }
     }
 
