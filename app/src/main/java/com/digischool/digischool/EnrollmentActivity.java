@@ -37,6 +37,7 @@ import cz.msebera.android.httpclient.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -222,13 +223,37 @@ public class EnrollmentActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
-                Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
+              /*  Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
                 Toast.makeText(this, "Paths is "+imgPath, Toast.LENGTH_SHORT).show();
-                imgView.setImageURI(file);//TODO
+                imgView.setImageURI(file);//TODO*/
+                //Bitmap photo = (Bitmap) data.getExtras().get("data");
+               // imgView.setImageBitmap(photo);
+                //Uri tempUri = getImageUri( photo);
+                imgView.setImageURI(file);//TODO*/
+                // CALL THIS METHOD TO GET THE ACTUAL PATH
+                File finalFile = new File(getRealPathFromURI(file));
+
+                Log.d(TAG, "REAL_PATH_TO_FILE: "+getRealPathFromURI(file));
+               // System.out.println(mImageCaptureUri);
 
             }
         }
     }
+
+    public Uri getImageUri( Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI2(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
+
 
 
     private static File getOutputMediaFile(){
