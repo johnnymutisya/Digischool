@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
@@ -221,10 +222,9 @@ public class EnrollmentActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
-                imgView.setImageURI(file);//TODO
-               // imgPath= getPath(file);
-                Log.d(TAG, "onActivityResult: GOTTEN_PATH ");
                 Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
+                imgView.setImageURI(file);//TODO
+
             }
         }
     }
@@ -246,25 +246,50 @@ public class EnrollmentActivity extends AppCompatActivity {
     //method to get the file path from uri
 
     private String getRealPathFromURI(Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor =getContentResolver().query(contentUri,  proj, null, null, null);
-            Log.d(TAG, "COLUMN_COUNT "+cursor.getColumnCount());
-            Log.d(TAG, "COLUMN_NAMES: "+cursor.getColumnNames());
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            Log.d(TAG, "REAL_PATH: "+cursor.getString(column_index));
-            return cursor.getString(column_index);
-        } catch (Exception e) {
-            Log.e(TAG, "getRealPathFromURI Exception : " + e.toString());
-            e.printStackTrace();
-            return "";
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+//        Cursor cursor = null;
+//        try {
+//            String[] proj = { MediaStore.Images.Media.DATA };
+//            cursor =getContentResolver().query(contentUri,  proj, null, null, null);
+//            Log.d(TAG, "COLUMN_COUNT "+cursor.getColumnCount());
+//            Log.d(TAG, "COLUMN_NAMES: "+cursor.getColumnNames());
+//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//            cursor.moveToFirst();
+//            Log.d(TAG, "REAL_PATH: "+cursor.getString(column_index));
+//            return cursor.getString(column_index);
+//        } catch (Exception e) {
+//            Log.e(TAG, "getRealPathFromURI Exception : " + e.toString());
+//            e.printStackTrace();
+//            return "";
+//        } finally {
+//            if (cursor != null) {
+//                cursor.close();
+//            }
+//        }
+        // Will return "image:x*"
+        String wholeID = DocumentsContract.getDocumentId(contentUri);
+
+// Split at colon, use second item in the array
+        String id = wholeID.split(":")[1];
+
+        String[] column = { MediaStore.Images.Media.DATA };
+
+// where id is equal to
+        String sel = MediaStore.Images.Media._ID + "=?";
+
+        Cursor cursor = getContentResolver().
+                query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        column, sel, new String[]{ id }, null);
+
+        String filePath = "";
+
+        int columnIndex = cursor.getColumnIndex(column[0]);
+
+        if (cursor.moveToFirst()) {
+            filePath = cursor.getString(columnIndex);
         }
+
+        cursor.close();
+        return  filePath;
     }
 
     String TAG="STORAGE_PERM";
