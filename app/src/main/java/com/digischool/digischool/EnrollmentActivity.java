@@ -231,7 +231,7 @@ public class EnrollmentActivity extends AppCompatActivity {
                 //Uri tempUri = getImageUri( photo);
                 imgView.setImageURI(file);//TODO*/
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
-                File finalFile = new File(getRealPathFromURI(file));
+//                File finalFile = new File(getRealPathFromURI(file));
 
                 Log.d(TAG, "REAL_PATH_TO_FILE: "+getRealPathFromURI(file));
                // System.out.println(mImageCaptureUri);
