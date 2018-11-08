@@ -223,6 +223,7 @@ public class EnrollmentActivity extends AppCompatActivity {
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
                 Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
+                Toast.makeText(this, "Paths is "+imgPath, Toast.LENGTH_SHORT).show();
                 imgView.setImageURI(file);//TODO
 
             }
