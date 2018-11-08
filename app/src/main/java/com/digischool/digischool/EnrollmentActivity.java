@@ -151,10 +151,11 @@ public class EnrollmentActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(school_name);
         this.se = (Button) findViewById(R.id.se);
         this.se.setOnClickListener(new C03281());
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
-            takePictureButton.setEnabled(false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+                takePictureButton.setEnabled(false);
+            }
         }
     }
 
