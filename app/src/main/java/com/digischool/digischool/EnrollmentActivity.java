@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
@@ -37,6 +38,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class EnrollmentActivity extends AppCompatActivity {
     EditText admn;
@@ -169,30 +172,42 @@ public class EnrollmentActivity extends AppCompatActivity {
     public void pick_image(View v){
        showFileChooser();
     }
+    Uri file;
 
     //STEP 2 Display gallery to allow the user to choose the photo
     private void showFileChooser() {
-      
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        file = Uri.fromFile(getOutputMediaFile());
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+
+        startActivityForResult(intent, 100);
     }
     //STEP 3 Display the selected image on the image view and set the path
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri filePath = data.getData();
-            try {
-                //Getting the Bitmap from Gallery
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                //Setting the Bitmap to ImageView
-               // imgView.setImageBitmap(bitmap);
-                imgPath=getPath(filePath);
-                Log.d("PATH",imgPath);
-
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                //imageView.setImageURI(file);//TODO
+                imgPath= getPath(file);
+                Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
             }
         }
+    }
+
+
+    private static File getOutputMediaFile(){
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "CameraDemo");
+
+        if (!mediaStorageDir.exists()){
+            if (!mediaStorageDir.mkdirs()){
+                return null;
+            }
+        }
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        return new File(mediaStorageDir.getPath() + File.separator +"IMG_"+ timeStamp + ".jpg");
     }
     //method to get the file path from uri
     public String getPath(Uri uri) {
