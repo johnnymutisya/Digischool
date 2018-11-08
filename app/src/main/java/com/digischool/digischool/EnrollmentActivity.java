@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -177,8 +178,12 @@ public class EnrollmentActivity extends AppCompatActivity {
     //STEP 2 Display gallery to allow the user to choose the photo
     private void showFileChooser() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        file = Uri.fromFile(getOutputMediaFile());
+//        file = Uri.fromFile(getOutputMediaFile());
+        file = FileProvider.getUriForFile(this, getPackageName() + ".my.package.name.provider", createImageFile());
+
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+
 
         startActivityForResult(intent, 100);
     }
