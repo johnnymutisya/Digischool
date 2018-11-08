@@ -179,14 +179,35 @@ public class EnrollmentActivity extends AppCompatActivity {
     private void showFileChooser() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //        file = Uri.fromFile(getOutputMediaFile());
-        file = FileProvider.getUriForFile(this, getPackageName() + ".my.package.name.provider", createImageFile());
+        try {
+            file = FileProvider.getUriForFile(this, getPackageName() + ".my.package.name.provider", createImageFile());
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
+            startActivityForResult(intent, 100);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
 
-
-        startActivityForResult(intent, 100);
     }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM), "Camera");
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        imgPath = "file:" + image.getAbsolutePath();
+        return image;
+    }
+
     //STEP 3 Display the selected image on the image view and set the path
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
