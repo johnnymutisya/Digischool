@@ -220,7 +220,7 @@ public class EnrollmentActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 //imageView.setImageURI(file);//TODO
                // imgPath= getPath(file);
-
+                Log.d(TAG, "onActivityResult: GOTTEN_PATH "+getRealPathFromURI(file));
                 Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
             }
         }
@@ -241,42 +241,28 @@ public class EnrollmentActivity extends AppCompatActivity {
         return new File(mediaStorageDir.getPath() + File.separator +"IMG_"+ timeStamp + ".jpg");
     }
     //method to get the file path from uri
-    public String getPath(Uri uri) {
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        String document_id = cursor.getString(0);
-        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
-        cursor.close();
 
-        cursor = getContentResolver().query(
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
-        cursor.moveToFirst();
-        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-        cursor.close();
-
-        return path;
+    private String getRealPathFromURI(Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor =getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            Log.d(TAG, "REAL_PATH: "+cursor.getString(column_index));
+            return cursor.getString(column_index);
+        } catch (Exception e) {
+            Log.e(TAG, "getRealPathFromURI Exception : " + e.toString());
+            return "";
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 
     String TAG="STORAGE_PERM";
-    public  boolean isStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v(TAG,"Permission is granted");
-                return true;
-            } else {
 
-                Log.v(TAG,"Permission is revoked");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                return false;
-            }
-        }
-        else { //permission is automatically granted on sdk<23 upon installation
-            Log.v(TAG,"Permission is granted");
-            return true;
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
