@@ -7,6 +7,7 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -212,7 +213,8 @@ public class EnrollmentActivity extends AppCompatActivity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        imgPath = "file:" + image.getAbsolutePath();
+        //imgPath = "file:" + image.getAbsolutePath();
+        imgPath =  image.getAbsolutePath();
         Log.d(TAG, "createImageFile: "+imgPath);
         return image;
     }
@@ -229,12 +231,24 @@ public class EnrollmentActivity extends AppCompatActivity {
                 //Bitmap photo = (Bitmap) data.getExtras().get("data");
                // imgView.setImageBitmap(photo);
                 //Uri tempUri = getImageUri( photo);
-                imgView.setImageURI(file);//TODO*/
+               // imgView.setImageURI(file);//TODO*/
                 // CALL THIS METHOD TO GET THE ACTUAL PATH
 //                File finalFile = new File(getRealPathFromURI(file));
 
-                Log.d(TAG, "REAL_PATH_TO_FILE: "+getRealPathFromURI(file));
+               // Log.d(TAG, "REAL_PATH_TO_FILE: "+getRealPathFromURI(file));
                // System.out.println(mImageCaptureUri);
+                File imgFile = new  File(imgPath);
+
+                if(imgFile.exists()){
+
+                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    
+
+                    imgView.setImageBitmap(myBitmap);
+
+                }else{
+                    Toast.makeText(this, "Path does not exist", Toast.LENGTH_SHORT).show();
+                }
 
             }
         }
