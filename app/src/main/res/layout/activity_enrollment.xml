@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <TextView
         android:id="@+id/textViewSchool"
@@ -59,12 +66,22 @@
         android:hint="Enter Parents Phone Number"
         android:inputType="phone" />
 
+    <ImageView
+        android:onClick="pick_image"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_person_add_black_24dp"
+        android:id="@+id/imgPupil"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
     <Button
         android:layout_marginBottom="10dp"
         android:id="@+id/se"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Submit" />
+
+
 
     <Button
         android:onClick="pick_image"
@@ -80,4 +97,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="CSV FILE?Browse " />
-</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -141,6 +141,7 @@ public class EnrollmentActivity extends AppCompatActivity {
         this.kcpe = (EditText) findViewById(R.id.kcpe);
         this.cls = (EditText) findViewById(R.id.cls);
         this.phone = (EditText) findViewById(R.id.phone);
+        imgView=findViewById(R.id.imgPupil);
         this.textViewSchool = (TextView) findViewById(R.id.textViewSchool);
         takePictureButton=findViewById(R.id.photoBtn);
         this.progress = new ProgressDialog(this);
@@ -218,7 +219,7 @@ public class EnrollmentActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
-                //imageView.setImageURI(file);//TODO
+                imgView.setImageURI(file);//TODO
                // imgPath= getPath(file);
                 Log.d(TAG, "onActivityResult: GOTTEN_PATH "+getRealPathFromURI(file));
                 Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
