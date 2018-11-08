@@ -211,6 +211,7 @@ public class EnrollmentActivity extends AppCompatActivity {
 
         // Save a file: path for use with ACTION_VIEW intents
         imgPath = "file:" + image.getAbsolutePath();
+        Log.d(TAG, "createImageFile: "+imgPath);
         return image;
     }
 
@@ -222,7 +223,7 @@ public class EnrollmentActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 imgView.setImageURI(file);//TODO
                // imgPath= getPath(file);
-                Log.d(TAG, "onActivityResult: GOTTEN_PATH "+getRealPathFromURI(file));
+                Log.d(TAG, "onActivityResult: GOTTEN_PATH ");
                 Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
             }
         }
