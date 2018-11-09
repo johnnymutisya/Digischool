@@ -42,11 +42,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParentsLoginActivity" android:label="Parents" />
-        <activity android:name=".GovLoginActivity" />
-        <activity android:name=".SchoolsActivity" />
-        <activity android:name=".reports.TopTenActivity" />
-        <activity android:name=".reports.BottomTenActivity" />
+        <activity android:name=".ParentsLoginActivity" android:label="Cluster Leaders Login" />
+        <activity android:name=".GovLoginActivity" android:label="SEALs Admin Login" />
+        <activity android:name=".SchoolsActivity" android:label=" SEALS Clusters Services"/>
+        <activity android:name=".reports.TopTenActivity" android:label=" Best 10 SEALs Per Cluster"/>
+        <activity android:name=".reports.BottomTenActivity" android:label=" Last 10 SEALs Per Cluster"/>
         <activity android:name=".reports.AllPerClassActivity" />
         <activity android:name=".reports.MeanScoresActivity" />
         <activity android:name=".reports.TotalPerStreamActivity" />
