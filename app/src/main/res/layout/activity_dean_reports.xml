@@ -23,7 +23,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="ALL STUDENTS PER CLASS"
+        fancy:fb_text="All SEALs Per Group"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -42,7 +42,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="BEST 10 STUDENTS PER STREAM"
+        fancy:fb_text="Best 10 SEALs Per Cluster"
         fancy:fb_textColor="#ffffffff" />
         <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/BTNstreamlast10"
@@ -60,7 +60,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="LAST 10 STUDENTS PER STREAM"
+        fancy:fb_text="Last 10 SEALs Per Cluster"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -79,7 +79,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Total Enrollment per class"
+        fancy:fb_text="Total SEALs Enrollment Per Group"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -98,7 +98,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="CLASS MEANSCORE  AND MEANGRADE"
+        fancy:fb_text="SEALS Group Rating"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -117,6 +117,6 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="STREAM MEANSCORE AND MEANGRADE"
+        fancy:fb_text="SEALs Cluster Rating"
         fancy:fb_textColor="#ffffffff" />
 </LinearLayout>
