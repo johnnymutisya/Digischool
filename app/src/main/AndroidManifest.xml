@@ -42,7 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParentsLoginActivity" />
+        <activity android:name=".ParentsLoginActivity" android:label="Parents" />
         <activity android:name=".GovLoginActivity" />
         <activity android:name=".SchoolsActivity" />
         <activity android:name=".reports.TopTenActivity" />
