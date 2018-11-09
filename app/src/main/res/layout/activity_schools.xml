@@ -25,7 +25,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Exams"
+        fancy:fb_text="SEALs Service Uptake"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -43,7 +43,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Enrollment"
+        fancy:fb_text="SEALs Enrollment"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -61,7 +61,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="GetStudentMarks"
+        fancy:fb_text="SEALs Categories"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -79,7 +79,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="ADD STREAMS"
+        fancy:fb_text="Add SEALs Categories"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -97,7 +97,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="ADD SUBJECTS OR UNITS DONE"
+        fancy:fb_text="ADD SEALs Services"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -115,7 +115,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="REPORTS"
+        fancy:fb_text="SEALs Reports"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -134,7 +134,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Attendance"
+        fancy:fb_text="SEALs Session Attendance"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -153,6 +153,6 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="ADD GRADING SYSTEM"
+        fancy:fb_text="ADD SEALs Performance Rating"
         fancy:fb_textColor="#ffffffff" />
 </LinearLayout>
