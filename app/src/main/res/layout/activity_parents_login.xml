@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20.0dip"
         android:gravity="center"
-        android:text="Parent Login"
+        android:text="SEALs Cluster Leaders Login"
         android:textColor="@color/pltcolour"
         android:textSize="30.0sp" />
 
@@ -39,7 +39,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/pltcolour"
-            android:hint="School ID" />
+            android:hint="SEALs Cluster User Name" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -47,5 +47,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16.0dip"
         android:onClick="parentLogin"
-        android:text="Sign In" />
+        android:text="SEALs Cluster Leader Login" />
 </LinearLayout>
