@@ -79,7 +79,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Add SEALs Categories"
+        fancy:fb_text="Add SEALs Clusters"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
