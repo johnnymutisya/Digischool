@@ -17,7 +17,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/seals"
-        android:label="SEALs"
+        android:label="Digischool"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -42,34 +42,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParentsLoginActivity" android:label="Cluster Leaders Login" />
-        <activity android:name=".GovLoginActivity" android:label="SEALs Admin Login" />
-        <activity android:name=".SchoolsActivity" android:label=" SEALS Clusters Services"/>
-        <activity android:name=".reports.TopTenActivity" android:label=" Best 10 SEALs Per Cluster"/>
-        <activity android:name=".reports.BottomTenActivity" android:label=" Last 10 SEALs Per Cluster"/>
-        <activity android:name=".reports.AllPerClassActivity" />
-        <activity android:name=".reports.MeanScoresActivity" />
-        <activity android:name=".reports.TotalPerStreamActivity" />
-        <activity android:name=".reports.TotalsPerClassActivity" />
-        <activity android:name=".AttendanceActivity" />
-        <activity android:name=".StreamsActivity" />
-        <activity android:name=".BatchMarksActivity" />
+        <activity android:name=".ParentsLoginActivity" android:label="Parents Login" />
+        <activity android:name=".GovLoginActivity" android:label="Ministry of Education Login" />
+        <activity android:name=".SchoolsActivity" android:label=" School Modules"/>
+        <activity android:name=".reports.TopTenActivity" android:label=" Best 10 Students in a Stream"/>
+        <activity android:name=".reports.BottomTenActivity" android:label=" Last 10 Students in a Stream"/>
+        <activity android:name=".reports.AllPerClassActivity" android:label=" Class Merit List"/>
+        <activity android:name=".reports.MeanScoresActivity" android:label=" Class and Stream Meanscores"/>
+        <activity android:name=".reports.TotalPerStreamActivity" android:label=" Total Students in a Stream"/>
+        <activity android:name=".reports.TotalsPerClassActivity" android:label=" Total Students in a Class" />
+        <activity android:name=".AttendanceActivity" android:label=" Mark Class Attendance Register" />
+        <activity android:name=".StreamsActivity" android:label=" Enter all the Streams in School" />
+        <activity android:name=".BatchMarksActivity" android:label=" Enter Marks and upload to Server" />
         <activity android:name=".CabinetsecretaryreportsActivity" />
-        <activity android:name=".ClassteacherloginActivity" />
-        <activity android:name=".ClassteachersreportsActivity" />
+        <activity android:name=".ClassteacherloginActivity" android:label=" Class Teacher Login" />
+        <activity android:name=".ClassteachersreportsActivity" android:label=" Class Teacher Reports"/>
         <activity android:name=".CountyreportsActivity" />
-        <activity android:name=".DeanReports" />
-        <activity android:name=".GovReportsActivity" />
-        <activity android:name=".MOEreports" />
+        <activity android:name=".DeanReports" android:label=" Dean of Exams Reports"/>
+        <activity android:name=".GovReportsActivity" android:label=" Ministry of Education Reports"/>
+        <activity android:name=".MOEreports"  android:label=" Ministry of Education Reports"/>
         <activity android:name=".SubcountyReportsActivity" />
-        <activity android:name=".ParentsreportsActivity" />
-        <activity android:name=".PrincipalsReportActivity" />
-        <activity android:name=".ReportsActivity" />
-        <activity android:name=".SchoolLevelReportsActivity" />
-        <activity android:name=".StudentMarksActivity" />
-        <activity android:name=".SubjectNameActivity" />
-        <activity android:name=".SchoolTotalActivity" />
-        <activity android:name=".EnrollmentActivity" />
+        <activity android:name=".ParentsreportsActivity"  android:label=" Parents Reports"/>
+        <activity android:name=".PrincipalsReportActivity"  android:label=" School Principal Reports"/>
+        <activity android:name=".ReportsActivity"  android:label=" User Level Reports"/>
+        <activity android:name=".SchoolLevelReportsActivity"  android:label=" Reports at School Level"/>
+        <activity android:name=".StudentMarksActivity"  android:label=" Pull Students Marks from Server"/>
+        <activity android:name=".SubjectNameActivity"  android:label=" Enter Subjects Done in Your Institution"/>
+        <activity android:name=".SchoolTotalActivity"  android:label=" Total Students in School"/>
+        <activity android:name=".EnrollmentActivity"  android:label=" Capture New Students Biodata"/>
 
         <activity
             android:name=".TotalSchoolsPerCountyActivity"
