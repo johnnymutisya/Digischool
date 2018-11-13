@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26.0dip"
         android:gravity="center_horizontal"
-        android:text="SEALs Tracking"
+        android:text="Schools Login"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#ff1f24cc"
         android:textSize="24.0sp" />
