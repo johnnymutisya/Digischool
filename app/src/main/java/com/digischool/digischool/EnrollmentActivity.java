@@ -135,7 +135,7 @@ public class EnrollmentActivity extends AppCompatActivity {
             }
             params.add("phone", phoneNum);
             params.add("school_reg", EnrollmentActivity.this.getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", ""));
-            c.post(Constants.BASE_URL + "students.php", params, new C05681());
+            c.post(Constants.BASE_URL + "picha.php", params, new C05681());//students.php
         }
     }
 
