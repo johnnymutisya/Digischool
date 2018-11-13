@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -59,6 +60,8 @@ public class EnrollmentActivity extends AppCompatActivity {
     Bitmap bitmap;
     ImageView imgView;
     String imgPath="";
+    int MY_PERMISSIONS_REQUEST_CAMERA=1111;
+
 
     Button takePictureButton;
 
@@ -102,14 +105,14 @@ public class EnrollmentActivity extends AppCompatActivity {
 
         public void onClick(View arg0) {
 
-            if (imgPath.isEmpty()){
-                Toast.makeText(EnrollmentActivity.this, "Make sure you have picked an image", Toast.LENGTH_SHORT).show();
+            if (mCurrentPhotoPath.isEmpty()){
+                Toast.makeText(EnrollmentActivity.this, "Make sure you have taken a student image", Toast.LENGTH_SHORT).show();
                 return;
             }
             EnrollmentActivity.this.progress.show();
             AsyncHttpClient c = new AsyncHttpClient();
             RequestParams params = new RequestParams();
-            File file= new File(imgPath);
+            File file= new File(mCurrentPhotoPath);
             Log.d(TAG, "onClick: "+file.getName());
             Log.d(TAG, "onClick: "+file.getPath());
             Log.d(TAG, "onClick: "+file.getTotalSpace());
@@ -118,7 +121,7 @@ public class EnrollmentActivity extends AppCompatActivity {
             try {
                 params.put("fileToUpload", file);
             } catch (FileNotFoundException e) {
-                Toast.makeText(EnrollmentActivity.this, "Error while getting the file", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EnrollmentActivity.this, "Error while getting the file to upload", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -154,12 +157,19 @@ public class EnrollmentActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(school_name);
         this.se = (Button) findViewById(R.id.se);
         this.se.setOnClickListener(new C03281());
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-                takePictureButton.setEnabled(false);
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA) || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                } else {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},  MY_PERMISSIONS_REQUEST_CAMERA);
+                }
+
             }
         }
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -180,32 +190,59 @@ public class EnrollmentActivity extends AppCompatActivity {
     }
 
     public void pick_image(View v){
-       showFileChooser();
+       dispatchTakePictureIntent();
     }
-    Uri file;
 
-    //STEP 2 Display gallery to allow the user to choose the photo
-    private void showFileChooser() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        file = Uri.fromFile(getOutputMediaFile());
-        try {
-            file = FileProvider.getUriForFile(this, getPackageName() + ".my.package.name.provider", createImageFile());
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, file);
-            startActivityForResult(intent, 100);
-        } catch (IOException e) {
-            e.printStackTrace();
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // main logic
         }
-
-
     }
+
+    int REQUEST_IMAGE_CAPTURE=3456;
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,"com.digischool.digischool.fileprovider", photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            //Bitmap imageBitmap = (Bitmap) extras.get("data");
+            // imgUser.setImageBitmap(imageBitmap);
+            setPic();
+            galleryAddPic();
+            Log.d(TAG, "onActivityResult: "+mCurrentPhotoPath);
+        }
+    }
+
+    String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DCIM), "Camera");
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -213,137 +250,51 @@ public class EnrollmentActivity extends AppCompatActivity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        //imgPath = "file:" + image.getAbsolutePath();
-        imgPath =  image.getAbsolutePath();
-        Log.d(TAG, "createImageFile: "+imgPath);
+        mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
-
-    //STEP 3 Display the selected image on the image view and set the path
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100) {
-            if (resultCode == RESULT_OK) {
-              /*  Log.d(TAG, "onActivityResult: IMAGE_PATH "+imgPath);
-                Toast.makeText(this, "Paths is "+imgPath, Toast.LENGTH_SHORT).show();
-                imgView.setImageURI(file);//TODO*/
-                //Bitmap photo = (Bitmap) data.getExtras().get("data");
-               // imgView.setImageBitmap(photo);
-                //Uri tempUri = getImageUri( photo);
-               // imgView.setImageURI(file);//TODO*/
-                // CALL THIS METHOD TO GET THE ACTUAL PATH
-//                File finalFile = new File(getRealPathFromURI(file));
-
-               // Log.d(TAG, "REAL_PATH_TO_FILE: "+getRealPathFromURI(file));
-               // System.out.println(mImageCaptureUri);
-                File imgFile = new  File(imgPath);
-
-                if(imgFile.exists()){
-
-                    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                    
-
-                    imgView.setImageBitmap(myBitmap);
-
-                }else{
-                    Toast.makeText(this, "Path does not exist", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        }
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
     }
 
-    public Uri getImageUri( Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
+    private void setPic() {
+        // Get the dimensions of the View
+        int targetW = imgView.getWidth();
+        int targetH = imgView.getHeight();
+
+        // Get the dimensions of the bitmap
+        Log.d(TAG, "setPic: "+mCurrentPhotoPath);
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        imgView.setImageBitmap(bitmap);
     }
-
-    public String getRealPathFromURI2(Uri uri) {
-        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
-    }
+    String TAG="IMG_TAG";
 
 
 
-    private static File getOutputMediaFile(){
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "CameraDemo");
-
-        if (!mediaStorageDir.exists()){
-            if (!mediaStorageDir.mkdirs()){
-                return null;
-            }
-        }
-
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        return new File(mediaStorageDir.getPath() + File.separator +"IMG_"+ timeStamp + ".jpg");
-    }
-    //method to get the file path from uri
-
-    private String getRealPathFromURI(Uri contentUri) {
-//        Cursor cursor = null;
-//        try {
-//            String[] proj = { MediaStore.Images.Media.DATA };
-//            cursor =getContentResolver().query(contentUri,  proj, null, null, null);
-//            Log.d(TAG, "COLUMN_COUNT "+cursor.getColumnCount());
-//            Log.d(TAG, "COLUMN_NAMES: "+cursor.getColumnNames());
-//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//            cursor.moveToFirst();
-//            Log.d(TAG, "REAL_PATH: "+cursor.getString(column_index));
-//            return cursor.getString(column_index);
-//        } catch (Exception e) {
-//            Log.e(TAG, "getRealPathFromURI Exception : " + e.toString());
-//            e.printStackTrace();
-//            return "";
-//        } finally {
-//            if (cursor != null) {
-//                cursor.close();
-//            }
-//        }
-        // Will return "image:x*"
-        String wholeID = DocumentsContract.getDocumentId(contentUri);
-
-// Split at colon, use second item in the array
-        String id = wholeID.split(":")[1];
-
-        String[] column = { MediaStore.Images.Media.DATA };
-
-// where id is equal to
-        String sel = MediaStore.Images.Media._ID + "=?";
-
-        Cursor cursor = getContentResolver().
-                query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                        column, sel, new String[]{ id }, null);
-
-        String filePath = "";
-
-        int columnIndex = cursor.getColumnIndex(column[0]);
-
-        if (cursor.moveToFirst()) {
-            filePath = cursor.getString(columnIndex);
-        }
-
-        cursor.close();
-        return  filePath;
-    }
-
-    String TAG="STORAGE_PERM";
 
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 0) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                takePictureButton.setEnabled(true);
-            }
-        }
-    }
+
+
+
+
+
 
 }
