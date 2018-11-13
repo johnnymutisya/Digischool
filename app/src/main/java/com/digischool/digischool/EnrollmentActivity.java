@@ -226,10 +226,7 @@ public class EnrollmentActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data!=null) {
-            //Bundle extras = data.getExtras();
-            //Bitmap imageBitmap = (Bitmap) extras.get("data");
-            // imgUser.setImageBitmap(imageBitmap);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             setPic();
             galleryAddPic();
             Log.d(TAG, "onActivityResult: "+mCurrentPhotoPath);
