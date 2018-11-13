@@ -135,7 +135,7 @@ public class EnrollmentActivity extends AppCompatActivity {
             }
             params.add("phone", phoneNum);
             params.add("school_reg", EnrollmentActivity.this.getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", ""));
-            c.post(Constants.BASE_URL + "picha.php", params, new C05681());//students.php
+            c.post(Constants.BASE_URL + "students.php", params, new C05681());//students.php
         }
     }
 
@@ -239,8 +239,8 @@ public class EnrollmentActivity extends AppCompatActivity {
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
+        String timeStamp = new SimpleDateFormat("dd_HH_mm_ss").format(new Date());
+        String imageFileName = timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
