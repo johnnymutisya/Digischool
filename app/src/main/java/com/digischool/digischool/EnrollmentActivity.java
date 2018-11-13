@@ -226,13 +226,15 @@ public class EnrollmentActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data!=null) {
+            //Bundle extras = data.getExtras();
             //Bitmap imageBitmap = (Bitmap) extras.get("data");
             // imgUser.setImageBitmap(imageBitmap);
             setPic();
             galleryAddPic();
             Log.d(TAG, "onActivityResult: "+mCurrentPhotoPath);
+        }else{
+            Log.e(TAG, "onActivityResult: Data is null" );
         }
     }
 
