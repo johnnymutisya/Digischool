@@ -29,7 +29,7 @@
             android:id="@+id/regno"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter SEALs Cluster User Name" />
+            android:hint="Registration Number" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -43,7 +43,7 @@
             android:id="@+id/psd"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter SEALs Cluster Password" />
+            android:hint="Password" />
     </android.support.design.widget.TextInputLayout>
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -80,7 +80,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="SEALs Cluster Leaders"
+        fancy:fb_text="Are you a parent? Login Here"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -98,6 +98,6 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="SEALs Admin"
+        fancy:fb_text="Ministry? Login Here"
         fancy:fb_textColor="#ffffffff" />
 </LinearLayout>
