@@ -79,7 +79,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Add SEALs Clusters"
+        fancy:fb_text="Add SEALs Groups"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -97,7 +97,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="ADD SEALs Services"
+        fancy:fb_text="ADD SEALs Sessions"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -153,6 +153,6 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="ADD SEALs Performance Rating"
+        fancy:fb_text="ADD Group Performance Rating"
         fancy:fb_textColor="#ffffffff" />
 </LinearLayout>
