@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10.0dip"
         android:gravity="center_horizontal"
-        android:text="SEALs GROUPS REPORTS"
+        android:text="SCHOOL LEVEL REPORTS"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent"
         fancy:layout_constraintLeft_toLeftOf="parent"
@@ -46,7 +46,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="SEALs Members Reports"
+        fancy:fb_text="Parents Reports"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -64,7 +64,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="SEALs Cluster Reports"
+        fancy:fb_text="Class Teacher Reports"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -82,7 +82,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="SEALs Group Leaders Reports"
+        fancy:fb_text="Dean Reports"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -100,6 +100,6 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="SEALs Cluster Admin Reports"
+        fancy:fb_text="Principal Reports"
         fancy:fb_textColor="#ffffffff" />
 </LinearLayout>

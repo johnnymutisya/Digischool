@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10.0dip"
         android:gravity="center_horizontal"
-        android:text="SEALs CLUSTER ADMIN CONFIDENTIAL REPORTS"
+        android:text="PRINCIPAL CONFIDENTIAL REPORTS"
         android:textAllCaps="false"
         fancy:layout_constraintLeft_toLeftOf="parent"
         fancy:layout_constraintRight_toRightOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10.0dip"
         android:gravity="center_horizontal"
-        android:text="REPORTS GENERATED REAL TIME "
+        android:text="Reports Generated Real Time "
         fancy:layout_constraintLeft_toLeftOf="parent"
         fancy:layout_constraintRight_toRightOf="parent" />
 
@@ -44,7 +44,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Total SEALs Enrollment Per Cluster"
+        fancy:fb_text="Total Enrollment Per Class"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -63,7 +63,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="TOTAL SEALs Enrolment Per Group"
+        fancy:fb_text="TOTAL Enrolment Per Stream"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -82,7 +82,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Total UON SEALs Enrollment"
+        fancy:fb_text="Total School Enrollment"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -101,7 +101,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="SEALs Services Uptake Per Group"
+        fancy:fb_text="Exam Performance Per Stream"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -120,7 +120,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Best 10 SEALs Per Cluster"
+        fancy:fb_text="Best 10 Students Per Stream"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -139,7 +139,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="Last 10 SEALs Per Cluster"
+        fancy:fb_text="Last 10 Students Per Stream"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -157,7 +157,7 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text=" % SEALs Group Leader Sessions Attendance"
+        fancy:fb_text=" % Teacher Lesson Attendance"
         fancy:fb_textColor="#ffffffff" />
 
     <mehdi.sakout.fancybuttons.FancyButton
@@ -175,6 +175,6 @@
         fancy:fb_focusColor="@color/colorButtonLight"
         fancy:fb_iconPosition="left"
         fancy:fb_radius="6.0dip"
-        fancy:fb_text="% SEALs Member Sessions Attendance"
+        fancy:fb_text="% Learner Lesson Attendance"
         fancy:fb_textColor="#ffffffff" />
 </LinearLayout>
