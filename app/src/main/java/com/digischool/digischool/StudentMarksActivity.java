@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -55,6 +56,9 @@ public class StudentMarksActivity extends AppCompatActivity {
     //copy
     String currentYear;
     EditText inputYear;
+
+    ArrayList<String> subjectsArray=new ArrayList<>();
+    ArrayAdapter<String> adapterSubjects;
 
     class C03471 implements TextWatcher {
         C03471() {
@@ -159,6 +163,48 @@ public class StudentMarksActivity extends AppCompatActivity {
         this.progress.setMessage("Loading ...");
         this.admn.addTextChangedListener(new C03471());
         this.spinnerExamName.setOnItemSelectedListener(new C03482());
+
+        subjectsArray=new ArrayList<>();
+        adapterSubjects=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, subjectsArray);
+        listViewSubjects.setAdapter(adapterSubjects);
+        fetchSubjects();
+    }
+
+    public void fetchSubjects()
+    {
+        String school_reg=getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
+        AsyncHttpClient c = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.add("school_reg", school_reg);
+        this.progress.show();
+        c.post(Constants.BASE_URL + "subjects.php", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                progress.dismiss();
+                Toast.makeText(StudentMarksActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                Log.d("SUBJECTS", "onSuccess: "+responseString);
+
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                progress.dismiss();
+                Toast.makeText(StudentMarksActivity.this, "Subjects Loaded", Toast.LENGTH_SHORT).show();
+                Log.d("SUBJECTS", "onSuccess: "+responseString);
+                try {
+                    JSONArray array=new JSONArray(responseString);
+                    for (int i = 0; i < array.length(); i++) {
+                        subjectsArray.add(array.getJSONObject(i).getString("subject_name"));
+                    }
+                    adapterSubjects.notifyDataSetChanged();
+                    Log.d("DATA", "onSuccess: "+responseString);
+                    for(String s:subjectsArray)
+                        Log.d("DATA", "Subject : "+s);
+                    Toast.makeText(StudentMarksActivity.this, "Count "+subjectsArray.size(), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     protected void search(CharSequence text) {

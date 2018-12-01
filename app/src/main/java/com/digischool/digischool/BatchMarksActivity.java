@@ -189,7 +189,9 @@ public class BatchMarksActivity extends AppCompatActivity {
         this.spinnerSubject = (Spinner) findViewById(R.id.spinnerSubjects);
         this.spinnerTerm = (Spinner) findViewById(R.id.spinnerTerm);
         this.spinnerClass = (Spinner) findViewById(R.id.spinnerClass);
+
         this.spinner_data = new ArrayList();
+
         this.adapter_spinner = new ArrayAdapter(this, android.R.layout.simple_spinner_item, this.spinner_data);
         this.adapter_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spinnerClass.setAdapter(this.adapter_spinner);
