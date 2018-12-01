@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,6 +23,12 @@ import com.digischool.digischool.constants.Constants;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+
 import cz.msebera.android.httpclient.Header;
 
 public class AllExamsActivity extends AppCompatActivity {
@@ -34,6 +41,9 @@ public class AllExamsActivity extends AppCompatActivity {
     Spinner spinnerTerm;
     TextView textViewNames;
     String f25x = "Test";
+
+    ArrayList<String> subjectsArray=new ArrayList<>();
+    ArrayAdapter<String> adapterSubjects;
 
     class C03211 implements TextWatcher {
         C03211() {
@@ -122,6 +132,13 @@ public class AllExamsActivity extends AppCompatActivity {
         this.progress.setMessage("Loading ...");
         this.edtAdmn.addTextChangedListener(new C03211());
         this.buttonSuball.setOnClickListener(new C03222());
+
+        subjectsArray=new ArrayList<>();
+        adapterSubjects=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, subjectsArray);
+        adapterSubjects.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSubjects.setAdapter(adapterSubjects);
+
+        fetchSubjects();
     }
 
     protected void search(String input) {
@@ -150,5 +167,42 @@ public class AllExamsActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void fetchSubjects()
+    {
+        String school_reg=getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
+        AsyncHttpClient c = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.add("school_reg", school_reg);
+        this.progress.show();
+        c.post(Constants.BASE_URL + "subjects.php", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                progress.dismiss();
+                Toast.makeText(AllExamsActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                Log.d("SUBJECTS", "onSuccess: "+responseString);
+
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                progress.dismiss();
+                Toast.makeText(AllExamsActivity.this, "Subjects Loaded", Toast.LENGTH_SHORT).show();
+                Log.d("SUBJECTS", "onSuccess: "+responseString);
+                try {
+                    JSONArray array=new JSONArray(responseString);
+                    for (int i = 0; i < array.length(); i++) {
+                        subjectsArray.add(array.getJSONObject(i).getString("subject_name"));
+                    }
+                    adapterSubjects.notifyDataSetChanged();
+                    Log.d("DATA", "onSuccess: "+responseString);
+                    for(String s:subjectsArray)
+                        Log.d("DATA", "Subject : "+s);
+                    Toast.makeText(AllExamsActivity.this, "Count "+subjectsArray.size(), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
