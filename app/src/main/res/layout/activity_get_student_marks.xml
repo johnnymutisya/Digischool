@@ -76,7 +76,7 @@
             android:id="@+id/listViewSubjects"
             android:layout_width="fill_parent"
             android:layout_height="300.0dip"
-            android:entries="@array/subjects_array" />
+         />
 
         <TextView
             android:id="@+id/tvTotal"

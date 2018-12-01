@@ -42,7 +42,7 @@ public class AllExamsActivity extends AppCompatActivity {
     TextView textViewNames;
     String f25x = "Test";
 
-    ArrayList<String> subjectsArray=new ArrayList<>();
+    ArrayList<String> subjectsArray;
     ArrayAdapter<String> adapterSubjects;
 
     class C03211 implements TextWatcher {

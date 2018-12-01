@@ -50,6 +50,10 @@ public class BatchMarksActivity extends AppCompatActivity {
     Spinner spinnerTerm;
     ArrayList<String> spinner_data;
 
+
+    ArrayList<String> subjectsArray=new ArrayList<>();
+    ArrayAdapter<String> adapterSubjects;
+
     class C03241 implements OnItemSelectedListener {
         C03241() {
         }
@@ -190,13 +194,59 @@ public class BatchMarksActivity extends AppCompatActivity {
         this.adapter_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spinnerClass.setAdapter(this.adapter_spinner);
         this.spinnerClass.setOnItemSelectedListener(new C03241());
+
+        subjectsArray=new ArrayList<>();
+        adapterSubjects=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, subjectsArray);
+        adapterSubjects.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSubject.setAdapter(adapterSubjects);
+
+
+
         this.data = new ArrayList();
         this.adapter = new MarksAdapter(this.data, this);
         this.list.setAdapter(this.adapter);
         this.progress = new ProgressDialog(this);
         this.progress.setMessage("Loading ...");
+        fetchSubjects();
         populate_classes();
         this.list.setOnItemClickListener(new C03272());
+    }
+
+    public void fetchSubjects()
+    {
+        String school_reg=getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
+        AsyncHttpClient c = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.add("school_reg", school_reg);
+        this.progress.show();
+        c.post(Constants.BASE_URL + "subjects.php", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                progress.dismiss();
+                Toast.makeText(BatchMarksActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                Log.d("SUBJECTS", "onSuccess: "+responseString);
+
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                progress.dismiss();
+                Toast.makeText(BatchMarksActivity.this, "Subjects Loaded", Toast.LENGTH_SHORT).show();
+                Log.d("SUBJECTS", "onSuccess: "+responseString);
+                try {
+                    JSONArray array=new JSONArray(responseString);
+                    for (int i = 0; i < array.length(); i++) {
+                        subjectsArray.add(array.getJSONObject(i).getString("subject_name"));
+                    }
+                    adapterSubjects.notifyDataSetChanged();
+                    Log.d("DATA", "onSuccess: "+responseString);
+                    for(String s:subjectsArray)
+                        Log.d("DATA", "Subject : "+s);
+                    Toast.makeText(BatchMarksActivity.this, "Count "+subjectsArray.size(), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void populate_classes() {

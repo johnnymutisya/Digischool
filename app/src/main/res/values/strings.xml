@@ -20,22 +20,8 @@
         <item>Main Exam</item>
     </array>
 
-    <array name="subjects_array">
-        <item>Computer</item>
-        <item>Kiswahili</item>
-        <item>Biology</item>
-        <item>English</item>
-        <item>Chemistry</item>
-        <item>Agriculture</item>
-        <item>Physics</item>
-        <item>Geography</item>
-        <item>History</item>
-        <item>Maths</item>
-        <item>Business Studies</item>
-        <item>Home Science</item>
-        <item>French</item>
-        <item>CRE</item>
-    </array>
+
+
     <array name="terms_array">
         <item>TERM 1</item>
         <item>TERM 2</item>
