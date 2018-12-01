@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.digischool.digischool.adapters.AttendanceAdapter;
 import com.digischool.digischool.constants.Constants;
 import com.digischool.digischool.models.AttendanceItem;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -207,6 +208,32 @@ public class AttendanceActivity extends AppCompatActivity {
         String subject = this.spinnerSubjects.getSelectedItem().toString();
         String className = this.inputClass.getText().toString().trim();
         String school_reg=getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
-        
+        Gson gson=new Gson();
+        String array=gson.toJson(data);
+        Log.d("JSON_ARRAY", "save_to_server: "+array);
+        AsyncHttpClient c = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        if (className.trim().isEmpty()) {
+            Toast.makeText(this, "You must provide your Stream", Toast.LENGTH_LONG).show();
+            return;
+        }
+        params.add("class", className);
+        params.add("subject", subject);
+        params.add("school_reg", school_reg);
+        params.add("info", array);
+        this.progress.show();
+        c.post("attendance.php", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Toast.makeText(AttendanceActivity.this, "Could not save attendance data", Toast.LENGTH_SHORT).show();
+                progress.dismiss();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                Toast.makeText(AttendanceActivity.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
+                progress.dismiss();
+            }
+        });
     }
 }
