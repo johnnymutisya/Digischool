@@ -184,7 +184,7 @@ public class AttendanceActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.logout_menu, menu);
+        getMenuInflater().inflate(R.menu.attendance_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -197,7 +197,16 @@ public class AttendanceActivity extends AppCompatActivity {
             //x.addFlags(335577088);
             startActivity(x);
             finish();
+        }else if(item.getItemId() == R.id.save_menu){
+            save_to_server();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void save_to_server() {
+        String subject = this.spinnerSubjects.getSelectedItem().toString();
+        String className = this.inputClass.getText().toString().trim();
+        String school_reg=getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
+        
     }
 }
