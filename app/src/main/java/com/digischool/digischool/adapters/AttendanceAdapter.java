@@ -1,6 +1,7 @@
 package com.digischool.digischool.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,8 +61,10 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
         viewHolder.tvRegNumber.setText(dataModel.getStudentId());
         if (dataModel.isPresent()) {
             viewHolder.btnStatus.setText("Mark As Absent");
+            viewHolder.btnStatus.setBackgroundColor(Color.parseColor("#15f74a"));
         } else {
             viewHolder.btnStatus.setText("Student Absent");
+            viewHolder.btnStatus.setBackgroundColor(Color.parseColor("#f7152c"));
         }
         viewHolder.btnStatus.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {

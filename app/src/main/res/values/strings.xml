@@ -21,10 +21,10 @@
     </array>
 
 
-
     <array name="terms_array">
         <item>TERM 1</item>
         <item>TERM 2</item>
         <item>TERM 3</item>
     </array>
+    <string name="title_activity_attendance_reports">AttendanceReports</string>
 </resources>
