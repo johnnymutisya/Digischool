@@ -73,7 +73,7 @@ public class AttendanceActivity extends AppCompatActivity {
             Log.d("STREAMS_DATA", "onSuccess: " + content);
             try {
                 AttendanceActivity.this.data.clear();
-                AttendanceActivity.this.inputClass.setText("");
+//                AttendanceActivity.this.inputClass.setText("");
                 JSONArray array = new JSONArray(content);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject obj = array.getJSONObject(i);
@@ -226,7 +226,7 @@ public class AttendanceActivity extends AppCompatActivity {
         params.add("school_reg", school_reg);
         params.add("info", array);
         this.progress.show();
-        c.post("attendance.php", params, new TextHttpResponseHandler() {
+        c.post(Constants.BASE_URL+"attendance.php", params, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 throwable.printStackTrace();
