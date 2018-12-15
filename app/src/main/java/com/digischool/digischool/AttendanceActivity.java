@@ -211,6 +211,10 @@ public class AttendanceActivity extends AppCompatActivity {
         Gson gson=new Gson();
         String array=gson.toJson(data);
         Log.d("JSON_ARRAY", "save_to_server: "+array);
+        Log.d("JSON_ARRAY", "class: "+className);
+        Log.d("JSON_ARRAY", "subject: "+subject);
+        Log.d("JSON_ARRAY", "school_reg: "+school_reg);
+
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         if (className.trim().isEmpty()) {
