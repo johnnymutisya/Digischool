@@ -225,7 +225,8 @@ public class AttendanceActivity extends AppCompatActivity {
         c.post("attendance.php", params, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Toast.makeText(AttendanceActivity.this, "Could not save attendance data", Toast.LENGTH_SHORT).show();
+                throwable.printStackTrace();
+                Toast.makeText(AttendanceActivity.this, "Could not save attendance data "+responseString, Toast.LENGTH_SHORT).show();
                 progress.dismiss();
             }
 
