@@ -66,6 +66,8 @@ public class AttendanceReports extends AppCompatActivity {
                        inputDate.setText(date_string);
                     }
                 }, y,m,d);
+
+                dp.show();
             }
         });
 

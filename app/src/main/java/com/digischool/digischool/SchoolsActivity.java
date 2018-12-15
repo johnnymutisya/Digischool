@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import com.digischool.digischool.reports.AttendanceReports;
+
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class SchoolsActivity extends AppCompatActivity {
@@ -22,6 +25,10 @@ public class SchoolsActivity extends AppCompatActivity {
 
        startActivity(new Intent(SchoolsActivity.this, GradingActivity.class));
 
+    }
+
+    public void view_attendance(View view) {
+        SchoolsActivity.this.startActivity(new Intent(SchoolsActivity.this, AttendanceReports.class));
     }
 
     class C03401 implements OnClickListener {
