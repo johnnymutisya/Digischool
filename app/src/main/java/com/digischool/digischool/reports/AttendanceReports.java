@@ -59,7 +59,7 @@ public class AttendanceReports extends AppCompatActivity {
         inputDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog dp=new DatePickerDialog(getApplicationContext(), new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog dp=new DatePickerDialog(AttendanceReports.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                        date_string=year+"-"+(month+1)+"-"+day;
@@ -67,6 +67,8 @@ public class AttendanceReports extends AppCompatActivity {
                     }
                 }, y,m,d);
 
+                dp.setTitle("Calender");
+                dp.setMessage("Select A Date");
                 dp.show();
             }
         });
@@ -105,6 +107,7 @@ public class AttendanceReports extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                progress.dismiss();
                 try
                 {
                     JSONObject obj=new JSONObject(responseString);
