@@ -245,12 +245,20 @@ public class EnrollmentActivity extends AppCompatActivity {
         }else if (requestCode==3000 && resultCode== RESULT_OK)
         {
             Uri csv_path=data.getData();
-            Log.d(TAG, "onActivityResult: "+csv_path.getPath());
-            uploadCSV(csv_path.getPath());
+            Log.d(TAG, "onActivityResult: "+getRealPathFromURI(csv_path));
+            uploadCSV(getRealPathFromURI(csv_path));
         }
         else{
             Log.e(TAG, "onActivityResult: Data is null" );
         }
+    }
+    public String getRealPathFromURI(Uri contentUri) {
+        String [] proj      = {MediaStore.Images.Media.DATA};
+        Cursor cursor       = getContentResolver().query( contentUri, proj, null, null,null);
+        if (cursor == null) return null;
+        int column_index    = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     private void uploadCSV(String csv_path) {
