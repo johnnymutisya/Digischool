@@ -254,19 +254,30 @@ public class EnrollmentActivity extends AppCompatActivity {
     }
 
     private void uploadCSV(String csv_path) {
-        AsyncHttpClient c = new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         File file= new File(csv_path);
-
-
         try {
             params.put("fileToUpload", file);
         } catch (FileNotFoundException e) {
-            Toast.makeText(EnrollmentActivity.this, "Error while getting the file to upload", Toast.LENGTH_LONG).show();
+            Toast.makeText(EnrollmentActivity.this, "Error while getting the csv to upload", Toast.LENGTH_LONG).show();
             return;
         }
-
         params.add("school_reg", EnrollmentActivity.this.getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", ""));
+        progress.show();
+        client.post(Constants.BASE_URL + "csv.php", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                Toast.makeText(EnrollmentActivity.this, "Error while uploading CSV", Toast.LENGTH_LONG).show();
+                progress.dismiss();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+              progress.dismiss();
+            }
+        });
+
     }
 
     String mCurrentPhotoPath;
