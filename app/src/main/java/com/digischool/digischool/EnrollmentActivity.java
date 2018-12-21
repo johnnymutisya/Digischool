@@ -65,6 +65,19 @@ public class EnrollmentActivity extends AppCompatActivity {
 
     Button takePictureButton;
 
+    public void get_csv(View view) {
+        selectCSV();
+
+    }
+
+    public  void selectCSV(){
+        Intent x=new Intent(Intent.ACTION_GET_CONTENT);
+        x.addCategory(Intent.CATEGORY_OPENABLE);
+        x.setType("text/csv");
+        startActivityForResult(Intent.createChooser(x, "Pick CSV"),3000);
+    }
+
+
     class C03281 implements OnClickListener {
 
         class C05681 extends TextHttpResponseHandler {
@@ -230,9 +243,30 @@ public class EnrollmentActivity extends AppCompatActivity {
             setPic();
             galleryAddPic();
             Log.d(TAG, "onActivityResult: "+mCurrentPhotoPath);
-        }else{
+        }else if (requestCode==3000 && resultCode== RESULT_OK)
+        {
+           String csv_path=data.getData().getPath();
+           uploadCSV(csv_path);
+        }
+        else{
             Log.e(TAG, "onActivityResult: Data is null" );
         }
+    }
+
+    private void uploadCSV(String csv_path) {
+        AsyncHttpClient c = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        File file= new File(csv_path);
+
+
+        try {
+            params.put("fileToUpload", file);
+        } catch (FileNotFoundException e) {
+            Toast.makeText(EnrollmentActivity.this, "Error while getting the file to upload", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        params.add("school_reg", EnrollmentActivity.this.getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", ""));
     }
 
     String mCurrentPhotoPath;
