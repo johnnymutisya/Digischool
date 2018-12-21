@@ -71,7 +71,7 @@ public class EnrollmentActivity extends AppCompatActivity {
     }
 
     public  void selectCSV(){
-        Intent x=new Intent(Intent.ACTION_PICK);
+        Intent x=new Intent(Intent.ACTION_GET_CONTENT);
         x.setType("*/*");
         startActivityForResult(Intent.createChooser(x, "Pick CSV"),3000);
     }
@@ -244,9 +244,9 @@ public class EnrollmentActivity extends AppCompatActivity {
             Log.d(TAG, "onActivityResult: "+mCurrentPhotoPath);
         }else if (requestCode==3000 && resultCode== RESULT_OK)
         {
-           String csv_path=data.getDataString();
-            Log.d(TAG, "onActivityResult: "+csv_path);
-           uploadCSV(csv_path);
+            Uri csv_path=data.getData();
+            Log.d(TAG, "onActivityResult: "+csv_path.getPath());
+            uploadCSV(csv_path.getPath());
         }
         else{
             Log.e(TAG, "onActivityResult: Data is null" );
