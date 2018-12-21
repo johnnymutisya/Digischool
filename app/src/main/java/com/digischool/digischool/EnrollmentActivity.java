@@ -282,6 +282,7 @@ public class EnrollmentActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                Toast.makeText(EnrollmentActivity.this, ""+responseString, Toast.LENGTH_SHORT).show();
               progress.dismiss();
             }
         });
