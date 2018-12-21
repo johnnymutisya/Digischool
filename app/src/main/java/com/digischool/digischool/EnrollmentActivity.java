@@ -72,8 +72,7 @@ public class EnrollmentActivity extends AppCompatActivity {
 
     public  void selectCSV(){
         Intent x=new Intent(Intent.ACTION_GET_CONTENT);
-        x.addCategory(Intent.CATEGORY_OPENABLE);
-        x.setType("text/csv");
+        x.setType("*/*");
         startActivityForResult(Intent.createChooser(x, "Pick CSV"),3000);
     }
 
