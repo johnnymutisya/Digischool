@@ -63,7 +63,8 @@ public class AttendanceReports extends AppCompatActivity {
                 DatePickerDialog dp=new DatePickerDialog(AttendanceReports.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                       date_string=year+"-"+(month+1)+"-"+day;
+                       String current_month= String.valueOf(month+1).length()==1?"0"+(month+1) : String.valueOf(month+1);
+                       date_string=year+"-"+current_month+"-"+day;
                        inputDate.setText(date_string);
                     }
                 }, y,m,d);
