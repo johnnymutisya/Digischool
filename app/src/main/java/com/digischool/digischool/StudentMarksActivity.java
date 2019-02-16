@@ -150,9 +150,7 @@ public class StudentMarksActivity extends AppCompatActivity {
         currentYear=dateFormat.format(now);
         this.inputYear = (EditText) findViewById(R.id.inputYear);
         //end of copy
-
         this.admn = (EditText) findViewById(R.id.admn);
-
         this.textViewNames = (TextView) findViewById(R.id.textViewNames);
         this.tvExam = (TextView) findViewById(R.id.textViewExam);
         this.tvTotal = (TextView) findViewById(R.id.tvTotal);
