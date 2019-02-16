@@ -121,7 +121,10 @@ public class StudentMarksActivity extends AppCompatActivity {
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject item = array.getJSONObject(i);
                     StudentMarksActivity.this.data.add(new Score(item.getString("subject"), item.getInt("score")));
+                    Log.d(TAG, "onSuccess: "+item.getString("subject")+"  "+item.getInt("score"));
                 }
+
+
                 StudentMarksActivity.this.adapter.notifyDataSetChanged();
                 StudentMarksActivity.this.textViewNames.setText(names);
                 StudentMarksActivity.this.tvExam.setText(exam_name);
