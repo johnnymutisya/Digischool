@@ -167,7 +167,6 @@ public class StudentMarksActivity extends AppCompatActivity {
 
         subjectsArray=new ArrayList<>();
         adapterSubjects=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, subjectsArray);
-        listViewSubjects.setAdapter(adapterSubjects);
         fetchSubjects();
     }
 
