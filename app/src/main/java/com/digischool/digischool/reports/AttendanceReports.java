@@ -26,7 +26,10 @@ import com.loopj.android.http.TextHttpResponseHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -56,6 +59,9 @@ public class AttendanceReports extends AppCompatActivity {
         final int d= c.get(Calendar.DAY_OF_MONTH);
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Loading....");
+        DateFormat df = new SimpleDateFormat("Y-m-d");
+        String today = df.format(new Date());
+        inputDate.setText(today);
 
         inputDate.setOnClickListener(new View.OnClickListener() {
             @Override
