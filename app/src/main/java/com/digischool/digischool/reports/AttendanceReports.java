@@ -59,7 +59,7 @@ public class AttendanceReports extends AppCompatActivity {
         final int d= c.get(Calendar.DAY_OF_MONTH);
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Loading....");
-        DateFormat df = new SimpleDateFormat("Y-m-d");
+        DateFormat df = new SimpleDateFormat("Y-MM-d");
         String today = df.format(new Date());
         inputDate.setText(today);
 
