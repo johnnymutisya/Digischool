@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#b91ad6"
+    android:background="#9b0c9b"
     android:orientation="vertical">
 
     <TextView
