@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean isLoggedIn() {
         return getSharedPreferences("database", MODE_PRIVATE).getBoolean("logged_in", false);
-    }/home/john-mutisya/AndroidStudioProjects/Digischool
+    }
 
 
     public void ministrySignIn(View view) {
