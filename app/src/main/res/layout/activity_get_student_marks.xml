@@ -14,13 +14,14 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/admn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="Student ID"
-                android:inputType="number"/>
+                android:inputType="text" />
             <LinearLayout
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
