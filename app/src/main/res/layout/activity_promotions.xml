@@ -5,19 +5,14 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spinnerExamName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10.0dip"
-        android:entries="@array/exams_array" />
 
     <Spinner
-        android:id="@+id/spinnerTerms"
+        android:id="@+id/spinnerClass"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10.0dip"
         android:entries="@array/terms_array" />
+
     <LinearLayout
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -42,7 +37,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/list_top_ten"
+        android:id="@+id/list_class"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 </LinearLayout>
