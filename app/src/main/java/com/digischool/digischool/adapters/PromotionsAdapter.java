@@ -33,9 +33,9 @@ Context mContext;
         if (convertView == null) {
             viewHolder = new PromotionsAdapter.ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.promo_item_layout, parent, false);
-            viewHolder.tvtNames = (TextView) convertView.findViewById(R.id.txtNames);
-            viewHolder.tvtAdm = (TextView) convertView.findViewById(R.id.txtAdm);
-            viewHolder.tvtStream = (TextView) convertView.findViewById(R.id.txtStream);
+            viewHolder.tvtNames = convertView.findViewById(R.id.txtNames);
+            viewHolder.tvtAdm = convertView.findViewById(R.id.txtAdm);
+            viewHolder.tvtStream = convertView.findViewById(R.id.txtStream);
             result = convertView;
             convertView.setTag(viewHolder);
         } else {
