@@ -120,7 +120,7 @@ public class AllExamsActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView((int) R.layout.activity_all_exams);
+        setContentView((int) R.layout.activity_health_services_uptake);
         this.edtAdmn = (EditText) findViewById(R.id.edtAdmn);
         this.edtScore = (EditText) findViewById(R.id.edtScore);
         this.textViewNames = (TextView) findViewById(R.id.textViewNames);
