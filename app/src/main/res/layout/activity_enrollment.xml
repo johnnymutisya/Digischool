@@ -41,14 +41,14 @@
         android:id="@+id/admn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Students Admission No" />
+        android:hint="Enter Students NEMIS UPI No" />
 
     <EditText
         android:id="@+id/kcpe"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter KCPE Marks"
+        android:hint="Enter Student Huduma No "
         android:inputType="number" />
 
     <EditText
