@@ -81,14 +81,13 @@
         android:text="Submit" />
 
 
-
-    <Button
-        android:onClick="pick_image"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/photoBtn"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Iris camera?Get IRIS " />
+        <Button
+            android:id="@+id/photoBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:onClick="pick_image"
+            android:text="Thumb/Card Swipe?" />
 
     <Button android:onClick="get_csv"
         android:layout_marginBottom="10dp"
