@@ -132,7 +132,7 @@
             android:name=".reports.AttendanceReports"
             android:label="@string/title_activity_attendance_reports"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PromotionsActivity"></activity>
+        <activity android:name=".PromotionsActivity" />
     </application>
 
 </manifest>
