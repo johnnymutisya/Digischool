@@ -1,11 +1,13 @@
 package com.digischool.digischool.attendance;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
@@ -36,12 +39,14 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
     List<DailyAttendanceItem> listDataHeader;
     ProgressDialog progress;
     MyDatePickerFragment newFragment;
+    DatePicker datepicker;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nts__attendance__reports);
         listView=findViewById(R.id.listAttendanceExpandable);
+        datepicker=findViewById(R.id.simpleDatePicker);
         listDataHeader=new ArrayList<>();/*
         List<String> attendance= new ArrayList<>();
         attendance.add("A");
@@ -57,12 +62,15 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
         listDataHeader.add(item3);
         listDataHeader.add(item4);*/
         adapter=new ExpandableListAdapter(this,listDataHeader);
+        getCurrentDate();
 
         listView.setAdapter(adapter);
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
 
         fetAttendanceData();
+
+
 
 
     }
@@ -72,7 +80,6 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
         String url= Constants.BASE_URL+"tad/fetchOnline.php";
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params=new RequestParams();
-        String date = newFragment.getDate();
         Toast.makeText(this, ""+date, Toast.LENGTH_SHORT).show();
         params.put("date",date);
         progress.show();
@@ -116,8 +123,37 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
         });
     }
 
+    String date="";
+    private void showDatePicker() {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String dayStr = String.valueOf(day).length() == 1 ? "0" + day : "" + day;
+                String monStr = String.valueOf(month).length() == 1 ? "0" + month : "" + month;
+                date = year + "-" + monStr + "-" + dayStr;
+                fetAttendanceData();
+            }
+        }, year, month, day).show();
+    }
+
+    private void getCurrentDate() {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH) + 1;
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        String dayStr = String.valueOf(day).length() == 1 ? "0" + day : "" + day;
+        String monStr = String.valueOf(month).length() == 1 ? "0" + month : "" + month;
+
+        date = year + "-" + monStr + "-" + dayStr;
+    }
 
     public void change_date(View view) {
-
+        showDatePicker();
     }
 }
