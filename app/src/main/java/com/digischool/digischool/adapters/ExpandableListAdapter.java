@@ -1,6 +1,7 @@
 package com.digischool.digischool.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<DailyAttendanceItem> _listDataHeader; // header titles
-    private HashMap<String, List<String>> _listDataChild;
 
 
-    public ExpandableListAdapter(Context context, List<DailyAttendanceItem> listDataHeader, HashMap<String, List<String>> listChildData) {
+    public ExpandableListAdapter(Context context, List<DailyAttendanceItem> listDataHeader) {
         this._context = context;
         this._listDataHeader = listDataHeader;
-        this._listDataChild = listChildData;
     }
 
     @Override
@@ -62,8 +61,23 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-        return null;
+    public View getGroupView(int groupPosition, boolean isExpanded,
+                             View convertView, ViewGroup parent) {
+
+        //String headerTitle = (String) getGroup(groupPosition);
+        if (convertView == null) {
+            LayoutInflater infalInflater = (LayoutInflater) this._context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.list_group, null);
+        }
+        DailyAttendanceItem dailyAttendanceItem= _listDataHeader.get(groupPosition);
+        TextView txtNames = convertView.findViewById(R.id.txtNames);
+        TextView txtDepartment = convertView.findViewById(R.id.txtDepartment);
+        txtNames.setTypeface(null, Typeface.BOLD);
+        txtNames.setText(dailyAttendanceItem.getFname()+" "+dailyAttendanceItem.getLname());
+        txtDepartment.setTypeface(null, Typeface.BOLD);
+        txtDepartment.setText(dailyAttendanceItem.getDepartment());
+        return convertView;
     }
 
     @Override
@@ -73,14 +87,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         final String childText = (String) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this._context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_group_item, null);
         }
 
-        TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.txt_time);
-
+        TextView txtListChild = convertView.findViewById(R.id.txt_time);
         txtListChild.setText(childText);
         return convertView;
     }
