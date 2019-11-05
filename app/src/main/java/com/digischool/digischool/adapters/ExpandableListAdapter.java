@@ -1,10 +1,28 @@
 package com.digischool.digischool.adapters;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
+import com.digischool.digischool.models.DailyAttendanceItem;
+
+import java.util.HashMap;
+import java.util.List;
+
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
+
+    private Context _context;
+    private List<DailyAttendanceItem> _listDataHeader; // header titles
+    private HashMap<String, List<String>> _listDataChild;
+
+
+    public ExpandableListAdapter(Context context, List<DailyAttendanceItem> listDataHeader, HashMap<String, List<String>> listChildData) {
+        this._context = context;
+        this._listDataHeader = listDataHeader;
+        this._listDataChild = listChildData;
+    }
+
     @Override
     public int getGroupCount() {
         return 0;
