@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.digischool.digischool.attendance.NTS_Attendance_Reports;
 import com.digischool.digischool.reports.AllPerClassActivity;
 import com.digischool.digischool.reports.BottomTenActivity;
 import com.digischool.digischool.reports.TopTenActivity;
@@ -40,5 +41,9 @@ public class PrincipalsReportActivity extends AppCompatActivity {
 
     public void last10students(View view) {
         startActivity(new Intent(this, BottomTenActivity.class));
+    }
+
+    public void openNTSReport(View view) {
+        startActivity(new Intent(this, NTS_Attendance_Reports.class));
     }
 }
