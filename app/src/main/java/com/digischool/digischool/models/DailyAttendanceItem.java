@@ -1,7 +1,7 @@
 package com.digischool.digischool.models;
 
 public class DailyAttendanceItem {
-    String fname,lname, cnum,deptname;
+    String fname,lname, cnum,deptname, pid, attendance_date;
 
 
 
