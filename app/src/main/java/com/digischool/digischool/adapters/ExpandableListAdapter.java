@@ -18,8 +18,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<DailyAttendanceItem> _listDataHeader; // header titles
-
-
     public ExpandableListAdapter(Context context, List<DailyAttendanceItem> listDataHeader) {
         this._context = context;
         this._listDataHeader = listDataHeader;
@@ -61,8 +59,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded,
-                             View convertView, ViewGroup parent) {
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
         //String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {

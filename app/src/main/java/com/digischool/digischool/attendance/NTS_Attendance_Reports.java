@@ -15,6 +15,7 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
         setContentView(R.layout.activity_nts__attendance__reports);
         listView=findViewById(R.id.listAttendanceExpandable);
 
+        
 
     }
 }
