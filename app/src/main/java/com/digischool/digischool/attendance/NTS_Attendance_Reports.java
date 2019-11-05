@@ -1,6 +1,7 @@
 package com.digischool.digischool.attendance;
 
 import android.app.ProgressDialog;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.digischool.digischool.R;
 import com.digischool.digischool.TotalSchoolsPerCountyActivity;
 import com.digischool.digischool.adapters.ExpandableListAdapter;
 import com.digischool.digischool.constants.Constants;
+import com.digischool.digischool.fragments.MyDatePickerFragment;
 import com.digischool.digischool.models.DailyAttendanceItem;
 import com.digischool.digischool.models.Moe;
 import com.google.gson.JsonObject;
@@ -33,6 +35,7 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
     ExpandableListAdapter adapter;
     List<DailyAttendanceItem> listDataHeader;
     ProgressDialog progress;
+    MyDatePickerFragment newFragment;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
         listView.setAdapter(adapter);
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Fetching....");
+
         fetAttendanceData();
 
 
@@ -68,7 +72,8 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
         String url= Constants.BASE_URL+"tad/fetchOnline.php";
         AsyncHttpClient client=new AsyncHttpClient();
         RequestParams params=new RequestParams();
-        String date="2019-11-04";
+        String date = newFragment.getDate();
+        Toast.makeText(this, ""+date, Toast.LENGTH_SHORT).show();
         params.put("date",date);
         progress.show();
         client.post(url, params, new TextHttpResponseHandler() {
@@ -113,7 +118,6 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
 
 
     public void change_date(View view) {
-
 
     }
 }
