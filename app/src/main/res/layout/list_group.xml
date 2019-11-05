@@ -8,12 +8,15 @@
 
 
     <TextView
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
         android:id="@+id/txtNames"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="John Mark" />
 
     <TextView
+        android:textSize="10sp"
         android:id="@+id/txtDepartment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

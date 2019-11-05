@@ -5,11 +5,10 @@
     android:layout_height="55dp">
 
     <TextView
-        android:text="IN 740 PM"
         android:id="@+id/txt_time"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="17dip"
+        android:textSize="13sp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />

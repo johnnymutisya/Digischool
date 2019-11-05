@@ -76,14 +76,13 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 progress.dismiss();
                 Toast.makeText(getApplicationContext(),"Failed To Fetch",Toast.LENGTH_LONG).show();
-
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 progress.dismiss();
                 Log.d("REPORTS_DATA", "onSuccess: "+responseString);
-                Toast.makeText(NTS_Attendance_Reports.this, ""+responseString, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(NTS_Attendance_Reports.this, ""+responseString, Toast.LENGTH_SHORT).show();
                 listDataHeader.clear();
                 try {
                     JSONArray array =new JSONArray(responseString);
@@ -100,7 +99,6 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
                             String time = object.getString("time");
                             attendanceList.add(time);
                         }
-
                         DailyAttendanceItem z=new DailyAttendanceItem(fname,lname,department,attendanceList);
                         listDataHeader.add(z);
 

@@ -6,8 +6,15 @@
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-    <ExpandableListView
-        android:id="@+id/listAttendanceExpandable"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ExpandableListView
+            android:id="@+id/listAttendanceExpandable"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
+
+    </FrameLayout>
+
 </LinearLayout>
