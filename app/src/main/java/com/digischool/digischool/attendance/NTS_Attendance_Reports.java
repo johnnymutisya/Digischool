@@ -38,15 +38,14 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
     ExpandableListAdapter adapter;
     List<DailyAttendanceItem> listDataHeader;
     ProgressDialog progress;
-    MyDatePickerFragment newFragment;
-    DatePicker datepicker;
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nts__attendance__reports);
         listView=findViewById(R.id.listAttendanceExpandable);
-        datepicker=findViewById(R.id.simpleDatePicker);
+
         listDataHeader=new ArrayList<>();/*
         List<String> attendance= new ArrayList<>();
         attendance.add("A");
