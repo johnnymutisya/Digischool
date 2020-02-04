@@ -44,6 +44,14 @@ public class PrincipalsReportActivity extends AppCompatActivity {
     }
 
     public void openNTSReport(View view) {
-        startActivity(new Intent(this, NTS_Attendance_Reports.class));
+        Intent x=new Intent(this, NTS_Attendance_Reports.class);
+        x.putExtra("staff_type","NT");
+        startActivity(x);
+    }
+
+    public void openTSReport(View view) {
+        Intent x=new Intent(this, NTS_Attendance_Reports.class);
+        x.putExtra("staff_type","T");
+        startActivity(x);
     }
 }

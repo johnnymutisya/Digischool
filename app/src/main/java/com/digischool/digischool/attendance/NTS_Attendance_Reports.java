@@ -2,24 +2,18 @@ package com.digischool.digischool.attendance;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.digischool.digischool.R;
-import com.digischool.digischool.TotalSchoolsPerCountyActivity;
 import com.digischool.digischool.adapters.ExpandableListAdapter;
 import com.digischool.digischool.constants.Constants;
-import com.digischool.digischool.fragments.MyDatePickerFragment;
 import com.digischool.digischool.models.DailyAttendanceItem;
-import com.digischool.digischool.models.Moe;
-import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -38,6 +32,7 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
     ExpandableListAdapter adapter;
     List<DailyAttendanceItem> listDataHeader;
     ProgressDialog progress;
+    String staff_type="NT";
 
     @Override
 
@@ -45,21 +40,9 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nts__attendance__reports);
         listView=findViewById(R.id.listAttendanceExpandable);
+        staff_type= getIntent().getStringExtra("staff_type");
 
-        listDataHeader=new ArrayList<>();/*
-        List<String> attendance= new ArrayList<>();
-        attendance.add("A");
-        attendance.add("B");
-        attendance.add("C");
-        attendance.add("D");
-        DailyAttendanceItem item1=new DailyAttendanceItem("John","Mark","Biology", attendance);
-        DailyAttendanceItem item2=new DailyAttendanceItem("John","Mark","Biology", attendance);
-        DailyAttendanceItem item3=new DailyAttendanceItem("John","Mark","Biology", attendance);
-        DailyAttendanceItem item4=new DailyAttendanceItem("John","Mark","Biology", attendance);
-        listDataHeader.add(item1);
-        listDataHeader.add(item2);
-        listDataHeader.add(item3);
-        listDataHeader.add(item4);*/
+        listDataHeader=new ArrayList<>();
         adapter=new ExpandableListAdapter(this,listDataHeader);
         getCurrentDate();
 
@@ -81,6 +64,11 @@ public class NTS_Attendance_Reports extends AppCompatActivity {
         RequestParams params=new RequestParams();
         Toast.makeText(this, ""+date, Toast.LENGTH_SHORT).show();
         params.put("date",date);
+        params.put("staff_type",staff_type);
+        String school_id=NTS_Attendance_Reports.this.getSharedPreferences("database", MODE_PRIVATE).getString("school_reg", "");
+        params.add("school_id", school_id);
+
+        Log.d("REPORTS_DATA", "fetAttendanceData: "+date+ " "+staff_type+" "+school_id);
         progress.show();
         client.post(url, params, new TextHttpResponseHandler() {
             @Override
