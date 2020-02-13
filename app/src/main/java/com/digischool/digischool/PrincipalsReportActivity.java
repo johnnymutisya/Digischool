@@ -54,4 +54,10 @@ public class PrincipalsReportActivity extends AppCompatActivity {
         x.putExtra("staff_type","T");
         startActivity(x);
     }
+    public void openStudentReport(View view) {
+        Intent x=new Intent(this, NTS_Attendance_Reports.class);
+        x.putExtra("staff_type","S");
+        startActivity(x);
+    }
+
 }
