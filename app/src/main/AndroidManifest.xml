@@ -134,7 +134,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PromotionsActivity" />
         <activity android:name=".attendance.Teachers_Attendance_Reports" />
-        <activity android:name=".attendance.NTS_Attendance_Reports"></activity>
+        <activity android:name=".attendance.NTS_Attendance_Reports" />
+        <activity android:name=".attendance.TemplateActivity"></activity>
     </application>
 
 </manifest>
