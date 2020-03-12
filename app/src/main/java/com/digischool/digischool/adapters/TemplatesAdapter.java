@@ -1,6 +1,7 @@
 package com.digischool.digischool.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.digischool.digischool.R;
+import com.digischool.digischool.constants.Constants;
 import com.digischool.digischool.models.ClassItem;
 import com.digischool.digischool.models.Template;
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class TemplatesAdapter extends ArrayAdapter<Template> {
     private ArrayList<Template> dataSet;
@@ -58,9 +64,20 @@ public class TemplatesAdapter extends ArrayAdapter<Template> {
             @Override
             public void onClick(View view) {
               int id=  dataModel.getId();
-                AsyncHttpClient client
+                AsyncHttpClient client=new AsyncHttpClient();
+                RequestParams params=new RequestParams();
+                params.put("id",id);
+                client.post(Constants.TEMPLATE_URL+"templates", params, new TextHttpResponseHandler() {
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                        Log.d("TEMPLATE", "onFailure: "+responseString);
+                    }
 
-
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                        Log.d("TEMPLATE", "onSuccess: "+responseString);
+                    }
+                });
             }
         });
         return convertView;
