@@ -99,8 +99,14 @@ public class AttendanceActivity extends AppCompatActivity {
         setContentView((int) R.layout.activity_attendance);
         this.listView = findViewById(R.id.listAttendance);
         data = new ArrayList();
+        data.add(new AttendanceItem("10001","John Mark","0723544455",true));
+        data.add(new AttendanceItem("10001","John Mark","0723544455",true));
+        data.add(new AttendanceItem("10001","John Mark","0723544455",true));
+        data.add(new AttendanceItem("10001","John Mark","0723544455",true));
+
+
       //  map = new HashMap<>();
-        adapter = new AttendanceAdapter(this.data, this);
+        adapter = new AttendanceAdapter(data, this);
         listView.setAdapter(this.adapter);
 
         spinnerSubjects = findViewById(R.id.spinnerSubjects);
@@ -115,7 +121,7 @@ public class AttendanceActivity extends AppCompatActivity {
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Loading....");
 
-        fetchSubjects();
+       // fetchSubjects();
     }
     public void fetchSubjects()
     {

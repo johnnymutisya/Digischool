@@ -45,7 +45,7 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
         this.subject = subject;
     }
 
-    public View getVieadapterw(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         final AttendanceItem dataModel = getItem(position);
         View result;
