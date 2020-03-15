@@ -29,10 +29,7 @@ import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,7 +46,7 @@ public class AttendanceActivity extends AppCompatActivity {
     Spinner spinnerSubjects;
     ArrayList<String> subjectsArray=new ArrayList<>();
     ArrayAdapter<String> adapterSubjects;
-    ArrayList<Message> map;
+    ArrayList<Message> messagesArray;
 
 
     class C03231 implements OnItemSelectedListener {
@@ -101,8 +98,8 @@ public class AttendanceActivity extends AppCompatActivity {
         this.listView = findViewById(R.id.listAttendance);
         data = new ArrayList();
 
-        map = new ArrayList<>();
-        adapter = new AttendanceAdapter(data, this, map);
+        messagesArray = new ArrayList<>();
+        adapter = new AttendanceAdapter(data, this, messagesArray);
         listView.setAdapter(this.adapter);
 
         spinnerSubjects = findViewById(R.id.spinnerSubjects);
@@ -262,27 +259,29 @@ public class AttendanceActivity extends AppCompatActivity {
     protected void sendMessagesAPI(){
         //filter
 
-        if (!map.isEmpty()){
+        if (!messagesArray.isEmpty()){
             Gson gson=new Gson();
-            String array=gson.toJson(map);
+            String array=gson.toJson(messagesArray);
             Log.d(TAG, "sendMessagesAPI: "+array);
 
             AsyncHttpClient c = new AsyncHttpClient();
             RequestParams params = new RequestParams();
             params.add("data", array);
-            params.add("token", "");
+            params.add("token", "sM69436tXvhTjeIm1hhBjEL6hEKxZ758PPQpI");
             this.progress.show();
-            c.post(Constants.TEMPLATE_URL+"sendMAny", params, new TextHttpResponseHandler() {
+            c.post(Constants.TEMPLATE_URL+"sendAttendance", params, new TextHttpResponseHandler() {
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    Log.d(TAG, "onFailure: "+responseString);
                     throwable.printStackTrace();
-                    Toast.makeText(AttendanceActivity.this, "Could not save attendance data "+responseString, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AttendanceActivity.this, "Could not send attendance data sms", Toast.LENGTH_SHORT).show();
                     progress.dismiss();
                 }
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                    Toast.makeText(AttendanceActivity.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AttendanceActivity.this, "Send Messages Parents", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onSuccess: "+responseString);
                     progress.dismiss();
                 }
             });
