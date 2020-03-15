@@ -1,6 +1,7 @@
 package com.digischool.digischool.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,14 @@ public class TemplatesAdapter extends ArrayAdapter<Template> {
         viewHolder.txtBody.setText(dataModel.getBody());
         String status=dataModel.isStatus() ? "Active":"Inactive";
         viewHolder.txtStatus.setText(status);
+        if (dataModel.isStatus()){
+            viewHolder.txtStatus.setTextColor(Color.parseColor("#008000"));
+            viewHolder.btnUpdate.setText("ALREADY ACTIVE");
+        }else{
+            viewHolder.txtStatus.setTextColor(Color.parseColor("#8b0000"));
+            viewHolder.btnUpdate.setText("MAKE ACTIVE");
+
+        }
         viewHolder.btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
