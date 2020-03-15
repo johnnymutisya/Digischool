@@ -48,7 +48,7 @@ public class AttendanceActivity extends AppCompatActivity {
     Spinner spinnerSubjects;
     ArrayList<String> subjectsArray=new ArrayList<>();
     ArrayAdapter<String> adapterSubjects;
-    //HashMap<String, String> map;
+    HashMap<String, String> map;
 
 
     class C03231 implements OnItemSelectedListener {
@@ -99,14 +99,9 @@ public class AttendanceActivity extends AppCompatActivity {
         setContentView((int) R.layout.activity_attendance);
         this.listView = findViewById(R.id.listAttendance);
         data = new ArrayList();
-        data.add(new AttendanceItem("10001","John Mark","0723544455",true));
-        data.add(new AttendanceItem("10001","John Mark","0723544455",true));
-        data.add(new AttendanceItem("10001","John Mark","0723544455",true));
-        data.add(new AttendanceItem("10001","John Mark","0723544455",true));
 
-
-      //  map = new HashMap<>();
-        adapter = new AttendanceAdapter(data, this);
+        map = new HashMap<>();
+        adapter = new AttendanceAdapter(data, this, map);
         listView.setAdapter(this.adapter);
 
         spinnerSubjects = findViewById(R.id.spinnerSubjects);
@@ -121,7 +116,7 @@ public class AttendanceActivity extends AppCompatActivity {
         this.progress = new ProgressDialog(this);
         this.progress.setTitle("Loading....");
 
-       // fetchSubjects();
+        fetchSubjects();
     }
     public void fetchSubjects()
     {
@@ -197,8 +192,8 @@ public class AttendanceActivity extends AppCompatActivity {
         String subject = this.spinnerSubjects.getSelectedItem().toString();
         String className = this.inputClass.getText().toString().trim();
         this.adapter.setSubject(subject);
-        //loadData(this.school_reg, className);
-        loadFakeData();
+        loadData(this.school_reg, className);
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -265,34 +260,18 @@ public class AttendanceActivity extends AppCompatActivity {
 
     protected void sendMessagesAPI(){
         //filter
-      /*  if (!map.isEmpty()){
+
+        if (!map.isEmpty()){
             for (Map.Entry<String,String> entry : map.entrySet()){
-                Log.d("MAPPIG", "sendMessagesAPI: "+entry.getKey()+" "+entry.getValue());
+                Log.d("MAPPING", "sendMessagesAPI: "+entry.getKey()+" "+entry.getValue());
 
             }
 
         }else{
             Toast.makeText(this, "No items to send sms", Toast.LENGTH_SHORT).show();
         }
-*/
+
     }
 
-    public void loadFakeData(){
-        String fake ="[{\"0\":\"443\",\"id\":\"443\",\"1\":\"BANGE FAITH MORAA\",\"names\":\"BANGE FAITH MORAA\",\"2\":\"7676\",\"stdreg_no\":\"7676\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"444\",\"id\":\"444\",\"1\":\"BOSIRE NORAH BOSIBORI\",\"names\":\"BOSIRE NORAH BOSIBORI\",\"2\":\"7677\",\"stdreg_no\":\"7677\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"452\",\"id\":\"452\",\"1\":\"KANINI ELIZABETH NYAMAI\",\"names\":\"KANINI ELIZABETH NYAMAI\",\"2\":\"7685\",\"stdreg_no\":\"7685\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"454\",\"id\":\"454\",\"1\":\"KARIUKI WINSLET TEKRA\",\"names\":\"KARIUKI WINSLET TEKRA\",\"2\":\"7687\",\"stdreg_no\":\"7687\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"455\",\"id\":\"455\",\"1\":\"KASWII MARY NDAWA\",\"names\":\"KASWII MARY NDAWA\",\"2\":\"7688\",\"stdreg_no\":\"7688\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"458\",\"id\":\"458\",\"1\":\"KIIO SUSAN NDUNGE\",\"names\":\"KIIO SUSAN NDUNGE\",\"2\":\"7691\",\"stdreg_no\":\"7691\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"466\",\"id\":\"466\",\"1\":\"KITHOME CHRISTINE SYOMBUA\",\"names\":\"KITHOME CHRISTINE SYOMBUA\",\"2\":\"7699\",\"stdreg_no\":\"7699\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"470\",\"id\":\"470\",\"1\":\"KIVINDU STACYVERA MUKAMI\",\"names\":\"KIVINDU STACYVERA MUKAMI\",\"2\":\"7703\",\"stdreg_no\":\"7703\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"472\",\"id\":\"472\",\"1\":\"KYALO SHARON WAVINYA\",\"names\":\"KYALO SHARON WAVINYA\",\"2\":\"7705\",\"stdreg_no\":\"7705\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"477\",\"id\":\"477\",\"1\":\"KYULE JACINTA NDUKU\",\"names\":\"KYULE JACINTA NDUKU\",\"2\":\"7710\",\"stdreg_no\":\"7710\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"479\",\"id\":\"479\",\"1\":\"MAINA LAURA WAIRIMU\",\"names\":\"MAINA LAURA WAIRIMU\",\"2\":\"7712\",\"stdreg_no\":\"7712\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"},{\"0\":\"481\",\"id\":\"481\",\"1\":\"MAKAU HANNAH KASALU\",\"names\":\"MAKAU HANNAH KASALU\",\"2\":\"7714\",\"stdreg_no\":\"7714\",\"3\":\"016SS01\",\"school_id\":\"016SS01\",\"4\":\"350\",\"kcpe_marks\":\"350\",\"5\":\"1B\",\"class\":\"1B\",\"6\":\"1\",\"classy\":\"1\",\"7\":\"2020\",\"year\":\"2020\",\"8\":\"254728516643\",\"phone\":\"254728516643\",\"9\":\"default.png\",\"photo\":\"default.png\"}]";
-        try {
-            AttendanceActivity.this.data.clear();
-            JSONArray array = new JSONArray(fake);
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject obj = array.getJSONObject(i);
-                data.add(new AttendanceItem(obj.getString("stdreg_no"), obj.getString("names"), obj.getString("phone"), true));
-                Log.d(TAG, "loadFakeData: Adding Item");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }catch (Exception e){
-            e.printStackTrace();
-            Log.e(TAG, "onSuccess: "+ e.getMessage(), e );
-        }
-        adapter.notifyDataSetChanged();
-    }
+
 }

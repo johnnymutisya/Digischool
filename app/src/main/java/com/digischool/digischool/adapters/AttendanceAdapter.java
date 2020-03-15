@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.digischool.digischool.R;
 import com.digischool.digischool.models.AttendanceItem;
+import com.digischool.digischool.models.Message;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
     private ArrayList<AttendanceItem> dataSet;
     Context mContext;
     String subject;
-  //  HashMap<String, String> map;
+    ArrayList<Message> messages;
 
 
     private static class ViewHolder {
@@ -33,12 +34,12 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
         private ViewHolder() {
         }
     }
-////,HashMap<String String> map
-    public AttendanceAdapter(ArrayList<AttendanceItem> data, Context context ) {
+////,
+    public AttendanceAdapter(ArrayList<AttendanceItem> data, Context context,ArrayList<Message> messages ) {
         super(context, R.layout.attendance_layout, data);
         this.dataSet = data;
         this.mContext = context;
-        //this.map=map;
+        this.messages=messages;
     }
 
     public void setSubject(String subject) {
@@ -76,8 +77,8 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
                 if (dataModel.isPresent()) {
                     dataModel.setPresent(false);
                    // SmsManager.getDefault().sendTextMessage(dataModel.getPhoneNumber(), null, dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject, null, null);
-                   // if (!map.containsKey(dataModel.getPhoneNumber()))
-                    //    map.put(dataModel.getPhoneNumber(), dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject);
+                   if (messages.)
+                        map.put(dataModel.getPhoneNumber(), dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject);
                 } else {
                     dataModel.setPresent(true);
                 }
