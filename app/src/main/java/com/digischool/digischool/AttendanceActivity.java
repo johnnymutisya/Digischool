@@ -267,6 +267,28 @@ public class AttendanceActivity extends AppCompatActivity {
             String array=gson.toJson(map);
             Log.d(TAG, "sendMessagesAPI: "+array);
 
+            AsyncHttpClient c = new AsyncHttpClient();
+            RequestParams params = new RequestParams();
+            params.add("data", array);
+            params.add("token", "");
+            this.progress.show();
+            c.post(Constants.TEMPLATE_URL+"sendMAny", params, new TextHttpResponseHandler() {
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    throwable.printStackTrace();
+                    Toast.makeText(AttendanceActivity.this, "Could not save attendance data "+responseString, Toast.LENGTH_SHORT).show();
+                    progress.dismiss();
+                }
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                    Toast.makeText(AttendanceActivity.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
+                    progress.dismiss();
+                }
+            });
+
+
+
         }else{
             Toast.makeText(this, "No items to send sms", Toast.LENGTH_SHORT).show();
         }
