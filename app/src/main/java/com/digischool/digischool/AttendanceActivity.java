@@ -85,6 +85,10 @@ public class AttendanceActivity extends AppCompatActivity {
                     AttendanceActivity.this.data.add(new AttendanceItem(obj.getString("stdreg_no"), obj.getString("names"), obj.getString("phone"), true));
                 }
             } catch (JSONException e) {
+                e.printStackTrace();
+            }catch (Exception e){
+                e.printStackTrace();
+                Log.e(TAG, "onSuccess: "+ e.getMessage(), e );
             }
             AttendanceActivity.this.adapter.notifyDataSetChanged();
         }
