@@ -30,6 +30,9 @@ import cz.msebera.android.httpclient.Header;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +48,8 @@ public class AttendanceActivity extends AppCompatActivity {
     Spinner spinnerSubjects;
     ArrayList<String> subjectsArray=new ArrayList<>();
     ArrayAdapter<String> adapterSubjects;
+    HashMap<String, String> map;
+
 
     class C03231 implements OnItemSelectedListener {
         C03231() {
@@ -90,7 +95,8 @@ public class AttendanceActivity extends AppCompatActivity {
         setContentView((int) R.layout.activity_attendance);
         this.listView = findViewById(R.id.listAttendance);
         data = new ArrayList();
-        adapter = new AttendanceAdapter(this.data, this);
+        map = new HashMap<>();
+        adapter = new AttendanceAdapter(this.data, this, map);
         listView.setAdapter(this.adapter);
 
         spinnerSubjects = findViewById(R.id.spinnerSubjects);
@@ -198,7 +204,11 @@ public class AttendanceActivity extends AppCompatActivity {
             //x.addFlags(335577088);
             startActivity(x);
             finish();
-        }else if(item.getItemId() == R.id.save_menu){
+        }else if(item.getItemId()==R.id.sms_menu){
+           sendMessagesAPI();
+        }
+
+        else if(item.getItemId() == R.id.save_menu){
             save_to_server();
         }
         return super.onOptionsItemSelected(item);
@@ -240,5 +250,19 @@ public class AttendanceActivity extends AppCompatActivity {
                 progress.dismiss();
             }
         });
+    }
+
+    protected void sendMessagesAPI(){
+        //filter
+        if (!map.isEmpty()){
+            for (Map.Entry<String,String> entry : map.entrySet()){
+                Log.d("MAPPIG", "sendMessagesAPI: "+entry.getKey()+" "+entry.getValue());
+
+            }
+
+        }else{
+            Toast.makeText(this, "No items to send sms", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

@@ -16,11 +16,14 @@ import com.digischool.digischool.R;
 import com.digischool.digischool.models.AttendanceItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
     private ArrayList<AttendanceItem> dataSet;
     Context mContext;
     String subject;
+    HashMap<String, String> map;
+
 
     private static class ViewHolder {
         Button btnStatus;
@@ -31,17 +34,18 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
         }
     }
 
-    public AttendanceAdapter(ArrayList<AttendanceItem> data, Context context) {
+    public AttendanceAdapter(ArrayList<AttendanceItem> data, Context context,HashMap<String, String> map ) {
         super(context, R.layout.attendance_layout, data);
         this.dataSet = data;
         this.mContext = context;
+        this.map=map;
     }
 
     public void setSubject(String subject) {
         this.subject = subject;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getVieadapterw(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         final AttendanceItem dataModel = (AttendanceItem) getItem(position);
         View result;
@@ -71,7 +75,9 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
                 Log.d("SMS_SENT_ABSENT", "onClick: " + dataModel.getPhoneNumber());
                 if (dataModel.isPresent()) {
                     dataModel.setPresent(false);
-                    SmsManager.getDefault().sendTextMessage(dataModel.getPhoneNumber(), null, dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject, null, null);
+                   // SmsManager.getDefault().sendTextMessage(dataModel.getPhoneNumber(), null, dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject, null, null);
+                    if (!map.containsKey(dataModel.getPhoneNumber()))
+                        map.put(dataModel.getPhoneNumber(), dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject);
                 } else {
                     dataModel.setPresent(true);
                 }
