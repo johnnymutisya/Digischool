@@ -78,7 +78,7 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
                     dataModel.setPresent(false);
                    // SmsManager.getDefault().sendTextMessage(dataModel.getPhoneNumber(), null, dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject, null, null);
                     //dataModel.getPhoneNumber()
-                    Message sms=new Message("254728516643", dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject);
+                    Message sms=new Message(dataModel.getPhoneNumber(), dataModel.getNames() + " is absent for subject " + AttendanceAdapter.this.subject);
                    if (!messages.contains(sms))
                         messages.add(sms);
                 } else {
