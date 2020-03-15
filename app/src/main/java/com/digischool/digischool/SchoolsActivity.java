@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.digischool.digischool.reports.AttendanceReports;
+import com.digischool.digischool.templates.TemplatesActivity;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -123,5 +124,8 @@ public class SchoolsActivity extends AppCompatActivity {
 
     public void attendance(View view) {
         startActivity(new Intent(this, AttendanceActivity.class));
+    }
+    public void view_message_settings(View view) {
+        startActivity(new Intent(this, TemplatesActivity.class));
     }
 }
