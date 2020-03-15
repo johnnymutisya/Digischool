@@ -165,8 +165,10 @@ public class AttendanceActivity extends AppCompatActivity {
                 return;
         }
     }
+    String TAG="DATAA";
 
     private void loadData(String school_reg, String stream) {
+        Log.d(TAG, "loadData: Loading Students Data");
         AsyncHttpClient c = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         if (stream.trim().isEmpty()) {
