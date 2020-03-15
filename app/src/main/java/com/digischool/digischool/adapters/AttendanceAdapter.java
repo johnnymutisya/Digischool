@@ -52,9 +52,9 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
         if (convertView == null) {
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.attendance_layout, parent, false);
-            viewHolder.studentName = (TextView) convertView.findViewById(R.id.tvNames);
-            viewHolder.tvRegNumber = (TextView) convertView.findViewById(R.id.tvRegNumber);
-            viewHolder.btnStatus = (Button) convertView.findViewById(R.id.btnPresent);
+            viewHolder.studentName = convertView.findViewById(R.id.tvNames);
+            viewHolder.tvRegNumber = convertView.findViewById(R.id.tvRegNumber);
+            viewHolder.btnStatus = convertView.findViewById(R.id.btnPresent);
             result = convertView;
             convertView.setTag(viewHolder);
         } else {
