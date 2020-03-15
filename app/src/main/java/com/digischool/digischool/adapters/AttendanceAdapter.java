@@ -51,7 +51,7 @@ public class AttendanceAdapter extends ArrayAdapter<AttendanceItem> {
         View result;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.attendance_layout, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.simple_test, parent, false);
             viewHolder.studentName = convertView.findViewById(R.id.tvNames);
             viewHolder.tvRegNumber = convertView.findViewById(R.id.tvRegNumber);
             viewHolder.btnStatus = convertView.findViewById(R.id.btnPresent);
