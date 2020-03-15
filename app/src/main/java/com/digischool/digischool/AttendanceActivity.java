@@ -75,7 +75,7 @@ public class AttendanceActivity extends AppCompatActivity {
         public void onSuccess(int statusCode, Header[] headers, String content) {
             Toast.makeText(AttendanceActivity.this.getApplicationContext(), "Fetched", Toast.LENGTH_LONG).show();
             AttendanceActivity.this.progress.dismiss();
-            Log.d("STREAMS_DATA", "onSuccess: " + content);
+            Log.d(TAG, "onSuccess: " + content);
             try {
                 AttendanceActivity.this.data.clear();
 //                AttendanceActivity.this.inputClass.setText("");
@@ -141,9 +141,9 @@ public class AttendanceActivity extends AppCompatActivity {
                         subjectsArray.add(array.getJSONObject(i).getString("subject_name"));
                     }
                    adapterSubjects.notifyDataSetChanged();
-                    Log.d("DATA", "onSuccess: "+responseString);
+                    Log.d(TAG, "onSuccess: "+responseString);
                     for(String s:subjectsArray)
-                        Log.d("DATA", "Subject : "+s);
+                        Log.d(TAG, "Subject : "+s);
                     Toast.makeText(AttendanceActivity.this, "Count "+subjectsArray.size(), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
