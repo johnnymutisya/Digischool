@@ -263,7 +263,6 @@ public class AttendanceActivity extends AppCompatActivity {
             Gson gson=new Gson();
             String array=gson.toJson(messagesArray);
             Log.d(TAG, "sendMessagesAPI: "+array);
-
             AsyncHttpClient c = new AsyncHttpClient();
             RequestParams params = new RequestParams();
             params.add("data", array);
