@@ -135,7 +135,8 @@
         <activity android:name=".PromotionsActivity" />
         <activity android:name=".attendance.Teachers_Attendance_Reports" />
         <activity android:name=".attendance.NTS_Attendance_Reports" />
-        <activity android:name=".attendance.TemplateActivity"></activity>
+        <activity android:name=".attendance.TemplateActivity" />
+        <activity android:name=".templates.TemplatesActivity"></activity>
     </application>
 
 </manifest>
