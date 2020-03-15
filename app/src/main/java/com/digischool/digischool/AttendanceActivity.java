@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.digischool.digischool.adapters.AttendanceAdapter;
 import com.digischool.digischool.constants.Constants;
 import com.digischool.digischool.models.AttendanceItem;
+import com.digischool.digischool.models.Message;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -48,7 +49,7 @@ public class AttendanceActivity extends AppCompatActivity {
     Spinner spinnerSubjects;
     ArrayList<String> subjectsArray=new ArrayList<>();
     ArrayAdapter<String> adapterSubjects;
-    HashMap<String, String> map;
+    ArrayList<Message> map;
 
 
     class C03231 implements OnItemSelectedListener {
@@ -100,7 +101,7 @@ public class AttendanceActivity extends AppCompatActivity {
         this.listView = findViewById(R.id.listAttendance);
         data = new ArrayList();
 
-        map = new HashMap<>();
+        map = new ArrayList<>();
         adapter = new AttendanceAdapter(data, this, map);
         listView.setAdapter(this.adapter);
 
@@ -262,10 +263,9 @@ public class AttendanceActivity extends AppCompatActivity {
         //filter
 
         if (!map.isEmpty()){
-            for (Map.Entry<String,String> entry : map.entrySet()){
-                Log.d("MAPPING", "sendMessagesAPI: "+entry.getKey()+" "+entry.getValue());
-
-            }
+            Gson gson=new Gson();
+            String array=gson.toJson(map);
+            Log.d(TAG, "sendMessagesAPI: "+array);
 
         }else{
             Toast.makeText(this, "No items to send sms", Toast.LENGTH_SHORT).show();
