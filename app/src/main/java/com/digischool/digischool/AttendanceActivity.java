@@ -48,7 +48,7 @@ public class AttendanceActivity extends AppCompatActivity {
     Spinner spinnerSubjects;
     ArrayList<String> subjectsArray=new ArrayList<>();
     ArrayAdapter<String> adapterSubjects;
-    HashMap<String, String> map;
+    //HashMap<String, String> map;
 
 
     class C03231 implements OnItemSelectedListener {
@@ -99,8 +99,8 @@ public class AttendanceActivity extends AppCompatActivity {
         setContentView((int) R.layout.activity_attendance);
         this.listView = findViewById(R.id.listAttendance);
         data = new ArrayList();
-        map = new HashMap<>();
-        adapter = new AttendanceAdapter(this.data, this, map);
+      //  map = new HashMap<>();
+        adapter = new AttendanceAdapter(this.data, this);
         listView.setAdapter(this.adapter);
 
         spinnerSubjects = findViewById(R.id.spinnerSubjects);
@@ -260,7 +260,7 @@ public class AttendanceActivity extends AppCompatActivity {
 
     protected void sendMessagesAPI(){
         //filter
-        if (!map.isEmpty()){
+      /*  if (!map.isEmpty()){
             for (Map.Entry<String,String> entry : map.entrySet()){
                 Log.d("MAPPIG", "sendMessagesAPI: "+entry.getKey()+" "+entry.getValue());
 
@@ -269,6 +269,6 @@ public class AttendanceActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "No items to send sms", Toast.LENGTH_SHORT).show();
         }
-
+*/
     }
 }
