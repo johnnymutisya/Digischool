@@ -18,6 +18,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
@@ -85,6 +89,24 @@ public class TemplatesAdapter extends ArrayAdapter<Template> {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, String responseString) {
                         Log.d("TEMPLATE", "onSuccess: "+responseString);
+                        dataSet.clear();
+                        try {
+                            JSONArray array = new JSONArray(responseString);
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject object = array.getJSONObject(i);
+                                int id  = object.getInt("id");
+                                String body  = object.getString("body");
+                                boolean status  = object.getInt("active")==1? true : false;
+                                Template template= new Template();
+                                template.setId(id);
+                                template.setBody(body);
+                                template.setStatus(status);
+                                dataSet.add(template);
+                            }
+                            notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
