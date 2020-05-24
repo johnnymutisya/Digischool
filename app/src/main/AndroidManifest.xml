@@ -17,7 +17,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/seals"
         android:label="BioTym"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/laikipia"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <provider
